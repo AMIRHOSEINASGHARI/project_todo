@@ -21,12 +21,8 @@ const useServerAction = (
     const result = await asyncAction(fnInput);
     setLoading(() => false);
 
-    toast({
-      title: result.message,
-      variant: result.code === 200 ? "default" : "destructive",
-    });
-
     afterAction && afterAction();
+    return result;
   };
 
   return {

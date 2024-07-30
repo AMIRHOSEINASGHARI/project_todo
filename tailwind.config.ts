@@ -28,6 +28,16 @@ const config = {
           to: { height: "0" },
         },
       },
+      fontSize: {
+        base: "16px",
+        h1: "30px",
+        h2: "25px",
+        h3: "20px",
+        h4: "17px",
+        p1: "14px",
+        p2: "12px",
+        p3: "10px",
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",

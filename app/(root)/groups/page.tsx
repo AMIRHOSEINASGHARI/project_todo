@@ -1,7 +1,16 @@
-import React from "react";
+// constants
+import { icons } from "@/constants";
+// cmp
+import PageHeading from "@/components/shared/layout/PageHeading";
+import GroupTodos from "@/components/pages/groups/GroupTodos";
 
-const Groups = () => {
-  return <div>Groups</div>;
+const Group = () => {
+  return (
+    <>
+      <PageHeading icon={icons.groups} title="Groups" />
+      <GroupTodos />
+    </>
+  );
 };
 
-export default Groups;
+export default Group;

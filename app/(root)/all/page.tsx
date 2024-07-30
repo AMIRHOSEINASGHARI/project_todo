@@ -1,7 +1,16 @@
-import React from "react";
+// constants
+import { icons } from "@/constants";
+// cmp
+import AllTodos from "@/components/pages/all/AllTodos";
+import PageHeading from "@/components/shared/layout/PageHeading";
 
-const All = () => {
-  return <div>All</div>;
+const AllTodosPage = () => {
+  return (
+    <>
+      <PageHeading icon={icons.infinity} title="All" />
+      <AllTodos />
+    </>
+  );
 };
 
-export default All;
+export default AllTodosPage;

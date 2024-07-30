@@ -19,6 +19,7 @@ import { CiFilter, CiSettings } from "react-icons/ci";
 import { TfiClose } from "react-icons/tfi";
 import { CgMenuLeft } from "react-icons/cg";
 import { TiStarFullOutline, TiStarOutline } from "react-icons/ti";
+import { FaRegCircle } from "react-icons/fa";
 
 export const images = {
   logo: "",
@@ -26,6 +27,7 @@ export const images = {
   authRegister: "/images/auth-register.png",
   notFound: "/images/404.svg",
   error: "/images/sad.png",
+  person: "/images/man.png",
 };
 
 export const icons = {
@@ -52,12 +54,13 @@ export const icons = {
   star: <TiStarOutline />,
   starFill: <TiStarFullOutline />,
   infinity: <IoIosInfinite />,
+  circle: <FaRegCircle />,
 };
 
 export const sidebarMenuLinks = [
   {
     title: "All",
-    image: icons.star,
+    image: icons.infinity,
     link: "/all",
   },
   {
