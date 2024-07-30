@@ -4,7 +4,7 @@ import TodoCard from "./TodoCard";
 
 type TodosListProps = {
   title?: string;
-  todos: Todo[];
+  todos: Todo[] | undefined;
 };
 
 const TodosList = ({ title, todos }: TodosListProps) => {

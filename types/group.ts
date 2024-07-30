@@ -7,7 +7,7 @@ import { User } from "./user";
 export type Group = Document & {
   _id: string;
   group_name: string;
-  todos: Todo[];
+  todos: Todo[] | undefined;
   user: User;
   createdAt: Date;
   updatedAt: Date | null;

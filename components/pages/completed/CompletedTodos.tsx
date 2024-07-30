@@ -1,11 +1,21 @@
+// actions
+import { getCompletedTodos } from "@/actions/todo";
+import TodosList from "@/components/shared/todos/TodosList";
 // cmp
-import CompletedTodosList from "./ui/CompletedTodosList";
+import ZeroTodosText from "@/components/shared/ZeroTodosText";
 
-const CompletedTodos = () => {
+const CompletedTodos = async () => {
+  const data = await getCompletedTodos();
+
+  const completed_todos = data.completed_todos;
+
+  if (completed_todos.length === 0)
+    return <ZeroTodosText text="completed tasks" />;
+
   return (
-    <div>
-      <CompletedTodosList />
-    </div>
+    <section>
+      <TodosList todos={completed_todos} />
+    </section>
   );
 };
 

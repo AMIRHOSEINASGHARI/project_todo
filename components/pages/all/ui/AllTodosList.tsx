@@ -11,7 +11,7 @@ const AllTodosList = async () => {
   const un_grouped_todos = data.un_grouped_todos;
 
   if (
-    groups.every((group) => group.todos.length === 0) &&
+    groups.every((group) => group?.todos?.length === 0) &&
     un_grouped_todos?.length === 0
   )
     return <ZeroTodosText text="incompleted tasks" />;
