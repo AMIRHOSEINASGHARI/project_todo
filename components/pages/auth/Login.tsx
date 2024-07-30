@@ -152,7 +152,7 @@ const Login = () => {
               </Button>
             </div>
             <div className="flex items-center gap-2 justify-center">
-              <p className="text-p1">Don't have an account?</p>
+              <p className="text-p1">Dont have an account?</p>
               <Button asChild variant="link">
                 <Link href="/register">Sign Up</Link>
               </Button>
