@@ -6,7 +6,7 @@ import { getServerSession } from "@/utils/session";
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   const session = getServerSession();
 
-  if (session) {
+  if (session !== null) {
     redirect("/all");
   }
 

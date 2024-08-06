@@ -8,9 +8,9 @@ const SECRET_KEY = process.env.SESSION_SECRET_KEY;
 export const getServerSession = (): any => {
   try {
     const cookieStore = cookies();
-    const accessToken = cookieStore?.get("accessToken")?.value || "";
+    const accessToken = cookieStore?.get("accessToken")?.value;
 
-    const session = verify(accessToken, SECRET_KEY!);
+    const session = verify(accessToken!, SECRET_KEY!);
     //! SECRET_KEY!
 
     return session;

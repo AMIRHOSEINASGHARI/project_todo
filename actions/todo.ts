@@ -11,6 +11,9 @@ import Todo from "@/utils/models/todo";
 import { CreateTodoProps, Todo as TodoType } from "@/types/todo";
 import Group from "@/utils/models/group";
 import { Group as GroupType } from "@/types/group";
+import { redirect } from "next/navigation";
+import User from "@/utils/models/user";
+import { Types } from "mongoose";
 
 export const createTodo = async ({
   title,
@@ -23,22 +26,31 @@ export const createTodo = async ({
 
     const session = getServerSession();
 
+    if (!session) redirect("/login");
+
+    const user = await User.findById(session.userId);
+
     const newTodo = await Todo.create({
       title,
       important: important ?? false,
       group: group ?? null,
       isGrouped: isGrouped,
-      user: session.userId,
+      user: new Types.ObjectId(session.userId),
     });
+
+    user?.todos?.push(newTodo?._id);
+    await user.save();
 
     if (isGrouped && group) {
       const groupName = await Group.findById<GroupType>(group);
       groupName?.todos?.push(newTodo?._id);
       await groupName?.save();
+
+      user?.todo_groups?.push(groupName?._id);
+      await user.save();
     }
 
     revalidatePath("/all");
-    revalidatePath("/tasks");
 
     return {
       message: "Todo created",
@@ -64,6 +76,10 @@ export const completeTodo = async ({
 }) => {
   try {
     await connectDB();
+
+    const session = getServerSession();
+
+    if (!session) redirect("/login");
 
     await Todo.findByIdAndUpdate(_id, {
       completed,
@@ -96,6 +112,10 @@ export const importantTodo = async ({
   try {
     await connectDB();
 
+    const session = getServerSession();
+
+    if (!session) redirect("/login");
+
     await Todo.findByIdAndUpdate(_id, {
       important,
     });
@@ -122,6 +142,8 @@ export const getTodos = async () => {
     await connectDB();
 
     const session = getServerSession();
+
+    if (!session) redirect("/login");
 
     const un_grouped_todos = await Todo.find({
       completed: false,
@@ -163,6 +185,8 @@ export const getImportantTodos = async () => {
 
     const session = getServerSession();
 
+    if (!session) redirect("/login");
+
     const todos = await Todo.find({
       important: true,
       completed: false,
@@ -191,6 +215,8 @@ export const getCompletedTodos = async () => {
     await connectDB();
 
     const session = getServerSession();
+
+    if (!session) redirect("/login");
 
     const todos = await Todo.find({
       completed: true,

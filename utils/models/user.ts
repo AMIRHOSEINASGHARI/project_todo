@@ -10,7 +10,7 @@ const userSchema = new Schema({
       ref: "Todo",
     },
   ],
-  todo_groups: [
+  groups: [
     {
       type: Schema.Types.ObjectId,
       ref: "Group",

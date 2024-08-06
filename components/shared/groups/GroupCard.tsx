@@ -6,7 +6,7 @@ import moment from "moment";
 type GroupCardProps = {
   _id: string;
   group_name: string;
-  todos: number; // length
+  todos: number | undefined; // length
   createdAt: Date;
 };
 
@@ -23,7 +23,7 @@ const GroupCard = ({ _id, group_name, todos, createdAt }: GroupCardProps) => {
           <p className="text-p2">{moment(createdAt).format("LLL")}</p>
         </div>
         <p className="text-p1 bg-slate-100 rounded-md py-1 px-2">
-          {todos} Tasks
+          {todos || 0} Tasks
         </p>
       </div>
     </Link>

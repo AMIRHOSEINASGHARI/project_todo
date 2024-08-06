@@ -10,6 +10,8 @@ import Group from "@/utils/models/group";
 // types
 import { Group as GroupType } from "@/types/group";
 import Todo from "@/utils/models/todo";
+import { redirect } from "next/navigation";
+import User from "@/utils/models/user";
 
 export const createNewGroup = async ({
   group_name,
@@ -21,12 +23,20 @@ export const createNewGroup = async ({
 
     const session = getServerSession();
 
+    if (!session) redirect("/login");
+
     const newGroup = await Group.create({
       group_name,
       user: session.userId,
     });
 
     if (newGroup?._id) {
+      const user = await User.findOne({
+        username: session.username,
+      });
+      user?.groups?.push(newGroup?._id);
+      await user.save();
+
       revalidatePath("/", "layout");
       return JSON.parse(
         JSON.stringify({
@@ -59,6 +69,8 @@ export const getGroups = async () => {
 
     const session = getServerSession();
 
+    if (!session) redirect("/login");
+
     const groups = await Group.find({
       user: session.userId,
     })
@@ -88,6 +100,10 @@ export const getGroups = async () => {
 export const getGroup = async (id: string) => {
   try {
     await connectDB();
+
+    const session = getServerSession();
+
+    if (!session) redirect("/login");
 
     const group = await Group.findById(id)
       .populate({

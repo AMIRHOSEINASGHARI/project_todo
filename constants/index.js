@@ -74,11 +74,6 @@ export const sidebarMenuLinks = [
     link: "/completed",
   },
   {
-    title: "Tasks",
-    image: icons.tasks,
-    link: "/tasks",
-  },
-  {
     title: "Groups",
     image: icons.groups,
     link: "/groups",

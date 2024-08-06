@@ -10,7 +10,7 @@ export type User = Document & {
   password: string;
   name: string;
   todos: [Todo] | [];
-  todo_groups: [Group] | [];
+  groups: [Group] | [];
   createdAt: Date;
   updatedAt: Date | null;
 };
