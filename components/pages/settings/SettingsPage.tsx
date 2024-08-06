@@ -3,6 +3,7 @@ import { getUser } from "@/actions/user";
 // cmp
 import Information from "./ui/Information";
 import EditProfile from "./ui/EditProfile";
+import TodosInformation from "./ui/TodosInformation";
 
 const SettingsPage = async () => {
   const data = await getUser();
@@ -16,8 +17,15 @@ const SettingsPage = async () => {
 
   return (
     <div className="space-y-5">
-      <Information {...info} />
       <EditProfile />
+      <Information {...info} />
+      <TodosInformation
+        all_todos={all_todos}
+        completed_todos={completed_todos}
+        uncompleted_todos={uncompleted_todos}
+        important_todos={important_todos}
+        groups={groups}
+      />
     </div>
   );
 };

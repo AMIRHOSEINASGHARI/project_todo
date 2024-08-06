@@ -48,14 +48,14 @@ export const getUser = async () => {
     const all_todos = user?.todos?.length;
     const completed_todos = user?.todos?.filter(
       (todo) => todo?.completed === true
-    );
+    )?.length;
     const uncompleted_todos = user?.todos?.filter(
       (todo) => todo?.completed === false
-    );
+    )?.length;
     const important_todos = user?.todos?.filter(
       (todo) => todo?.important === true
-    );
-    const groups = user?.groups;
+    )?.length;
+    const groups = user?.groups?.length;
 
     return {
       data: {

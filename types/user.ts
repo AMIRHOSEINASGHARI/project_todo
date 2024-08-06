@@ -21,3 +21,11 @@ export type UserInformationProps = {
   createdAt?: Date | undefined;
   updatedAt?: Date | null | undefined;
 };
+
+export type TodosInformationProps = {
+  all_todos: number | undefined;
+  completed_todos: number | undefined;
+  uncompleted_todos: number | undefined;
+  important_todos: number | undefined;
+  groups: number | undefined;
+};

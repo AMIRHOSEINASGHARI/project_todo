@@ -4,7 +4,6 @@ import { UserInformationProps } from "@/types/user";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -18,28 +17,26 @@ const Information = ({
   updatedAt,
 }: UserInformationProps) => {
   return (
-    <>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Name</TableHead>
-            <TableHead>Username</TableHead>
-            <TableHead>Created At</TableHead>
-            <TableHead className="text-right">Last Modified</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableCell className="font-medium">{name}</TableCell>
-            <TableCell>{username}</TableCell>
-            <TableCell>{new Date(createdAt!).toLocaleDateString()}</TableCell>
-            <TableCell className="text-right">
-              {updatedAt ? new Date(updatedAt!).toLocaleDateString() : "-"}
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          <TableHead>Username</TableHead>
+          <TableHead>Created At</TableHead>
+          <TableHead>Last Modified</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>{name}</TableCell>
+          <TableCell>{username}</TableCell>
+          <TableCell>{new Date(createdAt!).toLocaleDateString()}</TableCell>
+          <TableCell>
+            {updatedAt ? new Date(updatedAt!).toLocaleDateString() : "-"}
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 };
 
