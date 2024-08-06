@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
 // clsx
 import clsx from "clsx";
@@ -59,10 +60,13 @@ const Login = () => {
   const { fn, loading } = useServerAction(login);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const result = fn(values);
+    const result = await fn(values);
 
     if (result?.code === 200) {
+      toast.success(result.message);
       replace("/all");
+    } else {
+      toast.error(result.message);
     }
   };
 

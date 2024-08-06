@@ -12,7 +12,7 @@ import useServerAction from "@/hooks/callServerAction";
 import { Button } from "@/components/ui/button";
 import { icons } from "@/constants";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
+import toast from "react-hot-toast";
 import CustomPopover from "../CustomPopover";
 import Loader from "../Loader";
 // clsx
@@ -22,7 +22,6 @@ const SidebarAddNewGroup = () => {
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
   const { loading, fn } = useServerAction(createNewGroup);
-  const { toast } = useToast();
   const router = useRouter();
 
   const onOpenChange = () => {
@@ -37,14 +36,13 @@ const SidebarAddNewGroup = () => {
       group_name: value,
     });
 
-    toast({
-      title: result.message,
-    });
-
     if (result?.code === 200) {
+      toast.success(result.message);
       setOpen(false);
       setValue("");
       router.push(`/groups/${result?.groupId}`);
+    } else {
+      toast.error(result.message);
     }
   };
 

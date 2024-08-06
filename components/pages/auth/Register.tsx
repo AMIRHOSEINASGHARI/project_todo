@@ -3,6 +3,7 @@
 // react
 import { useState } from "react";
 // next
+import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 // z - hook-form
@@ -27,10 +28,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import clsx from "clsx";
+import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
-import Link from "next/link";
+// clsx
+import clsx from "clsx";
 
 // form schema
 const formSchema = z.object({
@@ -66,7 +67,12 @@ const Register = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const result = await fn(values);
 
-    if (result?.code === 200) replace("/login");
+    if (result?.code === 200) {
+      toast.success(result.message);
+      replace("/login");
+    } else {
+      toast.error(result.message);
+    }
   };
 
   return (

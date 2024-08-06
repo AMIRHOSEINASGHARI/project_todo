@@ -12,9 +12,9 @@ import useServerAction from "@/hooks/callServerAction";
 import { createTodo } from "@/actions/todo";
 // cmp
 import Loader from "../Loader";
+import toast from "react-hot-toast";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
 
 type AddTodoProps = {
   important?: boolean;
@@ -24,7 +24,6 @@ type AddTodoProps = {
 
 const AddTodo = ({ important, isGrouped, group }: AddTodoProps) => {
   const [title, setTodo] = useState("");
-  const { toast } = useToast();
   const { loading, fn } = useServerAction(createTodo);
 
   const onSubmit = async (e: FormEvent) => {
@@ -33,10 +32,7 @@ const AddTodo = ({ important, isGrouped, group }: AddTodoProps) => {
     const result = await fn({ title, important, isGrouped, group });
 
     if (result.code !== 200) {
-      toast({
-        title: result.message,
-        variant: "destructive",
-      });
+      toast.error(result.message);
     }
 
     if (result.code === 200) {

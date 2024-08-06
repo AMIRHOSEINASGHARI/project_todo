@@ -8,7 +8,7 @@ import useServerAction from "@/hooks/callServerAction";
 import { icons } from "@/constants";
 // cmp
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import toast from "react-hot-toast";
 import Loader from "../Loader";
 // clsx
 import clsx from "clsx";
@@ -21,15 +21,15 @@ const ImportantTodoAction = ({
   important: boolean;
 }) => {
   const { loading, fn } = useServerAction(importantTodo);
-  const { toast } = useToast();
 
   const importantHandler = async () => {
     const result = await fn({ _id, important: !important });
 
-    toast({
-      title: result.message,
-      variant: result.code !== 200 ? "destructive" : "default",
-    });
+    if (result.code === 200) {
+      toast.success(result.message);
+    } else {
+      toast.error(result.message);
+    }
   };
 
   return (

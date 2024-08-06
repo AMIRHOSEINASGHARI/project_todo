@@ -8,9 +8,9 @@ import useServerAction from "@/hooks/callServerAction";
 import { icons } from "@/constants";
 // cmp
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
 import Loader from "../Loader";
 import clsx from "clsx";
+import toast from "react-hot-toast";
 
 type CompleteTodoActionPorps = {
   _id: string;
@@ -19,15 +19,15 @@ type CompleteTodoActionPorps = {
 
 const CompleteTodoAction = ({ _id, completed }: CompleteTodoActionPorps) => {
   const { loading, fn } = useServerAction(completeTodo);
-  const { toast } = useToast();
 
   const completeHandler = async () => {
     const result = await fn({ _id, completed: !completed });
 
-    toast({
-      title: result.message,
-      variant: result.code !== 200 ? "destructive" : "default",
-    });
+    if (result?.code === 200) {
+      toast.success(result.message);
+    } else {
+      toast.error(result.message);
+    }
   };
 
   return (

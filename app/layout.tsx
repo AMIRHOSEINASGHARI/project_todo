@@ -7,8 +7,8 @@ import { Inter as FontSans } from "next/font/google";
 // lib
 import { cn } from "@/lib/utils";
 // shadcn ui
-import { Toaster } from "@/components/ui/toaster";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+import { Toaster } from "react-hot-toast";
 
 const fontSans = FontSans({
   subsets: ["latin"],
