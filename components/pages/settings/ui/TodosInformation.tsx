@@ -17,15 +17,21 @@ const TodosInformation = ({
   important_todos,
   groups,
 }: TodosInformationProps) => {
+  const headerTitls = [
+    "All",
+    "Completed",
+    "UnCompleted",
+    "Important",
+    "Groups",
+  ];
+
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>All</TableHead>
-          <TableHead>Completed</TableHead>
-          <TableHead>UnCompleted</TableHead>
-          <TableHead>Important</TableHead>
-          <TableHead>Groups</TableHead>
+          {headerTitls.map((i) => (
+            <TableHead key={i}>{i}</TableHead>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody>

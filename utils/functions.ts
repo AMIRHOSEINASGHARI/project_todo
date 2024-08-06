@@ -13,3 +13,12 @@ export const verifyPassword = async (
   const isValid = await compare(password, hashedPassword);
   return isValid;
 };
+
+export const shorterText = (text: string, maxCharacter: number): string => {
+  const t = String(text);
+  if (t.length > maxCharacter) {
+    return `${t.substring(0, maxCharacter)}...`;
+  } else {
+    return text;
+  }
+};

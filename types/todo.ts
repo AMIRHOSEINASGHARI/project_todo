@@ -30,6 +30,7 @@ export interface Todo extends Document {
   completed: boolean;
   important: boolean;
   marks: [TodoMarks] | [];
+  isGrouped: boolean;
   group: Group;
   user: User;
   createdAt: Date;

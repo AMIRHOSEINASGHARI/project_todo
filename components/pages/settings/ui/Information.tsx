@@ -16,14 +16,15 @@ const Information = ({
   createdAt,
   updatedAt,
 }: UserInformationProps) => {
+  const headerTitls = ["Name", "Username", "Created At", "Last Modified"];
+
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Name</TableHead>
-          <TableHead>Username</TableHead>
-          <TableHead>Created At</TableHead>
-          <TableHead>Last Modified</TableHead>
+          {headerTitls.map((i) => (
+            <TableHead key={i}>{i}</TableHead>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody>

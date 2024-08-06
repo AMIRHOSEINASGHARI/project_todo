@@ -4,6 +4,7 @@ import { getUser } from "@/actions/user";
 import Information from "./ui/Information";
 import EditProfile from "./ui/EditProfile";
 import TodosInformation from "./ui/TodosInformation";
+import AllTodos from "./ui/AllTodos";
 
 const SettingsPage = async () => {
   const data = await getUser();
@@ -20,12 +21,13 @@ const SettingsPage = async () => {
       <EditProfile />
       <Information {...info} />
       <TodosInformation
-        all_todos={all_todos}
-        completed_todos={completed_todos}
-        uncompleted_todos={uncompleted_todos}
-        important_todos={important_todos}
-        groups={groups}
+        all_todos={all_todos?.length}
+        completed_todos={completed_todos?.length}
+        uncompleted_todos={uncompleted_todos?.length}
+        important_todos={important_todos?.length}
+        groups={groups?.length}
       />
+      <AllTodos todos={all_todos} />
     </div>
   );
 };

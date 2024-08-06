@@ -14,12 +14,15 @@ import {
 import { LuListTodo } from "react-icons/lu";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
-import { IoIosCheckmarkCircleOutline, IoIosInfinite } from "react-icons/io";
+import {
+  IoIosCheckmarkCircleOutline,
+  IoIosCloseCircleOutline,
+  IoIosInfinite,
+  IoIosRadioButtonOff,
+} from "react-icons/io";
 import { CiFilter, CiSettings } from "react-icons/ci";
-import { TfiClose } from "react-icons/tfi";
 import { CgMenuLeft } from "react-icons/cg";
 import { TiStarFullOutline, TiStarOutline } from "react-icons/ti";
-import { FaRegCircle } from "react-icons/fa";
 
 export const images = {
   logo: "",
@@ -42,7 +45,7 @@ export const icons = {
   user: <PiUserLight />,
   settings: <CiSettings />,
   search: <IoSearchOutline />,
-  close: <TfiClose />,
+  close: <IoIosCloseCircleOutline />,
   trash: <PiTrashSimple />,
   pen: <PiPencilSimpleLight />,
   document: <PiNewspaperLight />,
@@ -54,7 +57,7 @@ export const icons = {
   star: <TiStarOutline />,
   starFill: <TiStarFullOutline />,
   infinity: <IoIosInfinite />,
-  circle: <FaRegCircle />,
+  circle: <IoIosRadioButtonOff />,
 };
 
 export const sidebarMenuLinks = [

@@ -21,6 +21,10 @@ export const getUser = async () => {
         path: "todos",
         model: Todo,
         select: "-user",
+        populate: {
+          path: "group",
+          model: Group,
+        },
       })
       .populate({
         path: "groups",
@@ -45,27 +49,29 @@ export const getUser = async () => {
       createdAt: user?.createdAt,
       updatedAt: user?.updatedAt,
     };
-    const all_todos = user?.todos?.length;
+    const all_todos = user?.todos;
     const completed_todos = user?.todos?.filter(
       (todo) => todo?.completed === true
-    )?.length;
+    );
     const uncompleted_todos = user?.todos?.filter(
       (todo) => todo?.completed === false
-    )?.length;
+    );
     const important_todos = user?.todos?.filter(
       (todo) => todo?.important === true
-    )?.length;
-    const groups = user?.groups?.length;
+    );
+    const groups = user?.groups;
 
     return {
-      data: {
-        info,
-        all_todos,
-        completed_todos,
-        uncompleted_todos,
-        important_todos,
-        groups,
-      },
+      data: JSON.parse(
+        JSON.stringify({
+          info,
+          all_todos,
+          completed_todos,
+          uncompleted_todos,
+          important_todos,
+          groups,
+        })
+      ),
       message: "Success",
       status: "success",
       code: 200,
