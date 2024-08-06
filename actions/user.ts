@@ -30,8 +30,42 @@ export const getUser = async () => {
       .select("-password")
       .lean<UserType>();
 
+    if (!user) {
+      return {
+        data: null,
+        message: "User not found",
+        status: "failed",
+        code: 422,
+      };
+    }
+
+    const info = {
+      username: user?.username,
+      name: user?.name,
+      createdAt: user?.createdAt,
+      updatedAt: user?.updatedAt,
+    };
+    const all_todos = user?.todos?.length;
+    const completed_todos = user?.todos?.filter(
+      (todo) => todo?.completed === true
+    );
+    const uncompleted_todos = user?.todos?.filter(
+      (todo) => todo?.completed === false
+    );
+    const important_todos = user?.todos?.filter(
+      (todo) => todo?.important === true
+    );
+    const groups = user?.groups;
+
     return {
-      user,
+      data: {
+        info,
+        all_todos,
+        completed_todos,
+        uncompleted_todos,
+        important_todos,
+        groups,
+      },
       message: "Success",
       status: "success",
       code: 200,

@@ -1,24 +1,23 @@
 // actions
 import { getUser } from "@/actions/user";
+// cmp
 import Information from "./ui/Information";
 import EditProfile from "./ui/EditProfile";
 
 const SettingsPage = async () => {
   const data = await getUser();
 
-  const todos = data?.user?.todos;
-  const groups = data?.user?.groups;
-  const info = {
-    username: data?.user?.username,
-    name: data?.user?.name,
-    createdAt: data?.user?.createdAt,
-    updatedAt: data?.user?.updatedAt,
-  };
+  const all_todos = data?.data?.all_todos;
+  const completed_todos = data?.data?.completed_todos;
+  const uncompleted_todos = data?.data?.uncompleted_todos;
+  const important_todos = data?.data?.important_todos;
+  const groups = data?.data?.groups;
+  const info = data?.data?.info;
 
   return (
     <div className="space-y-5">
-      <EditProfile />
       <Information {...info} />
+      <EditProfile />
     </div>
   );
 };

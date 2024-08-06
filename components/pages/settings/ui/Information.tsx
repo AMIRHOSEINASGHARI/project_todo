@@ -1,5 +1,15 @@
 // types
 import { UserInformationProps } from "@/types/user";
+// cmp
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const Information = ({
   username,
@@ -8,28 +18,28 @@ const Information = ({
   updatedAt,
 }: UserInformationProps) => {
   return (
-    <div className="Grid2">
-      <div className="card border">
-        <h1 className="text-p1">Username:</h1>
-        <span className="font-bold">{username}</span>
-      </div>
-      <div className="card border">
-        <h1 className="text-p1">Name:</h1>
-        <span className="font-bold">{name}</span>
-      </div>
-      <div className="card border">
-        <h1 className="text-p1">Created At:</h1>
-        <span className="font-bold">
-          {new Date(createdAt!).toLocaleDateString()}
-        </span>
-      </div>
-      <div className="card border">
-        <h1 className="text-p1">Last Modified:</h1>
-        <span className="font-bold">
-          {updatedAt ? new Date(updatedAt!).toLocaleDateString() : "-"}
-        </span>
-      </div>
-    </div>
+    <>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Name</TableHead>
+            <TableHead>Username</TableHead>
+            <TableHead>Created At</TableHead>
+            <TableHead className="text-right">Last Modified</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className="font-medium">{name}</TableCell>
+            <TableCell>{username}</TableCell>
+            <TableCell>{new Date(createdAt!).toLocaleDateString()}</TableCell>
+            <TableCell className="text-right">
+              {updatedAt ? new Date(updatedAt!).toLocaleDateString() : "-"}
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </>
   );
 };
 

@@ -16,8 +16,8 @@ export type User = Document & {
 };
 
 export type UserInformationProps = {
-  username: string | undefined;
-  name: string | undefined;
-  createdAt: Date | undefined;
-  updatedAt: Date | null | undefined;
+  username?: string | undefined;
+  name?: string | undefined;
+  createdAt?: Date | undefined;
+  updatedAt?: Date | null | undefined;
 };
