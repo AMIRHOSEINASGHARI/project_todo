@@ -14,3 +14,10 @@ export type User = Document & {
   createdAt: Date;
   updatedAt: Date | null;
 };
+
+export type UserInformationProps = {
+  username: string | undefined;
+  name: string | undefined;
+  createdAt: Date | undefined;
+  updatedAt: Date | null | undefined;
+};

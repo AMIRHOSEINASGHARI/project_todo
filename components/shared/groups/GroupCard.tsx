@@ -12,10 +12,7 @@ type GroupCardProps = {
 
 const GroupCard = ({ _id, group_name, todos, createdAt }: GroupCardProps) => {
   return (
-    <Link
-      href={`/groups/${_id}`}
-      className="p-3 space-y-3 rounded-md shadow hover:bg-slate-100 Transition"
-    >
+    <Link href={`/groups/${_id}`} className="card space-y-3">
       <p className="text-p1 font-semibold">{group_name}</p>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">

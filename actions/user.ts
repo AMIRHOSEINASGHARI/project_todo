@@ -1,11 +1,14 @@
 "use server";
 
+// types
 import { User as UserType } from "@/types/user";
+// utils
+import { getServerSession } from "@/utils/session";
 import connectDB from "@/utils/connectDB";
+// models
 import Group from "@/utils/models/group";
 import Todo from "@/utils/models/todo";
 import User from "@/utils/models/user";
-import { getServerSession } from "@/utils/session";
 
 export const getUser = async () => {
   try {

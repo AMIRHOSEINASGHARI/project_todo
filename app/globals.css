@@ -50,3 +50,15 @@
 .h4 {
   @apply text-h4 font-bold;
 }
+
+.card {
+  @apply p-3 rounded-md shadow hover:bg-slate-100 Transition;
+}
+
+.Grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4;
+}
+
+.Grid2 {
+  @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4;
+}

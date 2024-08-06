@@ -14,7 +14,7 @@ const GroupTodos = async () => {
   if (groups?.length === 0) return <ZeroTodosText text="groups" />;
 
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+    <section className="Grid">
       {groups?.map((group) => (
         <GroupCard
           key={group?._id}
