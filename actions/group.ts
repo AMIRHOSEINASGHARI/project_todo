@@ -12,6 +12,7 @@ import { Group as GroupType } from "@/types/group";
 import Todo from "@/utils/models/todo";
 import { redirect } from "next/navigation";
 import User from "@/utils/models/user";
+import { Types } from "mongoose";
 
 export const createNewGroup = async ({
   group_name,
@@ -27,7 +28,7 @@ export const createNewGroup = async ({
 
     const newGroup = await Group.create({
       group_name,
-      user: session.userId,
+      user: new Types.ObjectId(session.userId),
     });
 
     if (newGroup?._id) {
