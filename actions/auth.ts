@@ -132,5 +132,5 @@ export const login = async ({
 
 export const signOut = () => {
   cookies().delete("accessToken");
-  redirect("/");
+  //   redirect("/");
 };

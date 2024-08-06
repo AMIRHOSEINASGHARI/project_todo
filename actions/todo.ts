@@ -11,7 +11,6 @@ import Todo from "@/utils/models/todo";
 import { CreateTodoProps, Todo as TodoType } from "@/types/todo";
 import Group from "@/utils/models/group";
 import { Group as GroupType } from "@/types/group";
-import { redirect } from "next/navigation";
 import User from "@/utils/models/user";
 import { Types } from "mongoose";
 
@@ -26,16 +25,14 @@ export const createTodo = async ({
 
     const session = getServerSession();
 
-    if (!session) redirect("/login");
-
-    const user = await User.findById(session.userId);
+    const user = await User.findById(session?.userId);
 
     const newTodo = await Todo.create({
       title,
       important: important ?? false,
       group: group ?? null,
       isGrouped: isGrouped,
-      user: new Types.ObjectId(session.userId),
+      user: new Types.ObjectId(session?.userId),
     });
 
     user?.todos?.push(newTodo?._id);
@@ -79,8 +76,6 @@ export const completeTodo = async ({
 
     const session = getServerSession();
 
-    if (!session) redirect("/login");
-
     await Todo.findByIdAndUpdate(_id, {
       completed,
     });
@@ -114,8 +109,6 @@ export const importantTodo = async ({
 
     const session = getServerSession();
 
-    if (!session) redirect("/login");
-
     await Todo.findByIdAndUpdate(_id, {
       important,
     });
@@ -143,16 +136,14 @@ export const getTodos = async () => {
 
     const session = getServerSession();
 
-    if (!session) redirect("/login");
-
     const un_grouped_todos = await Todo.find({
       completed: false,
-      user: session.userId,
+      user: session?.userId,
       isGrouped: false,
     }).lean<TodoType[]>();
 
     const groups = await Group.find({
-      user: session.userId,
+      user: session?.userId,
       $expr: { $gt: [{ $size: "$todos" }, 0] },
     })
       .populate({
@@ -185,12 +176,10 @@ export const getImportantTodos = async () => {
 
     const session = getServerSession();
 
-    if (!session) redirect("/login");
-
     const todos = await Todo.find({
       important: true,
       completed: false,
-      user: session.userId,
+      user: session?.userId,
     })
       .populate({
         path: "group",
@@ -216,11 +205,9 @@ export const getCompletedTodos = async () => {
 
     const session = getServerSession();
 
-    if (!session) redirect("/login");
-
     const todos = await Todo.find({
       completed: true,
-      user: session.userId,
+      user: session?.userId,
     })
       .populate({
         path: "group",

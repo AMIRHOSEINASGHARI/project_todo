@@ -10,7 +10,6 @@ import Group from "@/utils/models/group";
 // types
 import { Group as GroupType } from "@/types/group";
 import Todo from "@/utils/models/todo";
-import { redirect } from "next/navigation";
 import User from "@/utils/models/user";
 import { Types } from "mongoose";
 
@@ -24,11 +23,9 @@ export const createNewGroup = async ({
 
     const session = getServerSession();
 
-    if (!session) redirect("/login");
-
     const newGroup = await Group.create({
       group_name,
-      user: new Types.ObjectId(session.userId),
+      user: new Types.ObjectId(session?.userId),
     });
 
     if (newGroup?._id) {
@@ -70,10 +67,8 @@ export const getGroups = async () => {
 
     const session = getServerSession();
 
-    if (!session) redirect("/login");
-
     const groups = await Group.find({
-      user: session.userId,
+      user: session?.userId,
     })
       .populate({
         path: "todos",
@@ -103,8 +98,6 @@ export const getGroup = async (id: string) => {
     await connectDB();
 
     const session = getServerSession();
-
-    if (!session) redirect("/login");
 
     const group = await Group.findById(id)
       .populate({
