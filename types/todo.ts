@@ -37,3 +37,9 @@ export interface Todo extends Document {
   updatedAt: Date | null;
   completedAt: Date | null;
 }
+
+export type TodoDetailsProps = {
+  _id: string;
+  title: string;
+  completed: boolean;
+};

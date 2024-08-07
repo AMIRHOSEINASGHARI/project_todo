@@ -6,6 +6,7 @@ import ImportantTodoAction from "./ImportantTodoAction";
 // clsx
 import clsx from "clsx";
 import { icons } from "@/constants";
+import TodoDetails from "../todo-details/TodoDetails";
 
 type TodoCardProps = {
   _id: string;
@@ -36,13 +37,11 @@ const TodoCard = ({
             completed={JSON.parse(JSON.stringify(completed))}
             _id={JSON.parse(JSON.stringify(_id))}
           />
-          <p
-            className={clsx("text-p1", {
-              "line-through": completed,
-            })}
-          >
-            {title}
-          </p>
+          <TodoDetails
+            _id={JSON.parse(JSON.stringify(_id))}
+            title={JSON.parse(JSON.stringify(title))}
+            completed={JSON.parse(JSON.stringify(completed))}
+          />
         </div>
         <ImportantTodoAction
           important={JSON.parse(JSON.stringify(important))}
