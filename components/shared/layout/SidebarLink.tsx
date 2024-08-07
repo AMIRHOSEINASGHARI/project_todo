@@ -17,6 +17,7 @@ const SidebarLink = ({
   title,
   important_todos,
   un_completed_todos,
+  group_todos,
 }: SidebarLinkProps) => {
   const pathname = usePathname();
 
@@ -37,6 +38,9 @@ const SidebarLink = ({
         )}
         {title === "Important" && important_todos !== 0 && (
           <CustomNumberBadge title={important_todos} />
+        )}
+        {link.includes("/groups/") && group_todos !== 0 && (
+          <CustomNumberBadge title={group_todos} />
         )}
         {pathname === link && (
           <div className="w-[4px] h-[20px] bg-blue-500 rounded-[10px] absolute left-0"></div>

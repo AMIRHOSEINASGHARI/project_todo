@@ -4,7 +4,6 @@ import { getGroups } from "@/actions/group";
 import { icons } from "@/constants";
 // cmp
 import SidebarLink from "../layout/SidebarLink";
-import CustomTooltip from "../CustomTooltip";
 
 const SidebarTodoGroupsList = async () => {
   const data = await getGroups();
@@ -20,15 +19,10 @@ const SidebarTodoGroupsList = async () => {
       {groups?.map((group) => (
         <SidebarLink
           key={group?._id}
-          image={
-            <CustomTooltip
-              trigger={icons.menu}
-              content={group?.group_name}
-              side="right"
-            />
-          }
+          image={icons.menu}
           link={`/groups/${group?._id}`}
           title={group?.group_name}
+          group_todos={group?.todos?.length}
         />
       ))}
     </div>

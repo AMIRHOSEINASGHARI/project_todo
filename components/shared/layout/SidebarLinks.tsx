@@ -1,8 +1,9 @@
+// actions
+import { getSidebarTodos } from "@/actions/todo";
 // constants
 import { sidebarMenuLinks } from "@/constants";
 // cmp
 import SidebarLink from "./SidebarLink";
-import { getSidebarTodos } from "@/actions/todo";
 
 const SidebarLinks = async () => {
   const data = await getSidebarTodos();

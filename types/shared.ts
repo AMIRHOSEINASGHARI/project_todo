@@ -18,4 +18,5 @@ export type SidebarLinkProps = {
   title: string;
   un_completed_todos?: number;
   important_todos?: number;
+  group_todos?: number;
 };
