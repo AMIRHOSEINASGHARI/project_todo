@@ -170,6 +170,40 @@ export const getTodos = async () => {
   }
 };
 
+export const getSidebarTodos = async () => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    const todos = await Todo.find({
+      user: session?.userId,
+    }).lean<TodoType[]>();
+
+    const un_completed_todos = todos?.filter(
+      (todo) => todo?.completed === false
+    )?.length;
+    const important_todos = todos?.filter(
+      (todo) => todo?.important === true && todo?.completed === false
+    )?.length;
+
+    return {
+      un_completed_todos,
+      important_todos,
+      message: "success",
+      status: "success",
+      code: 200,
+    };
+  } catch (error: any) {
+    console.log(error);
+    return {
+      message: "Server Error!",
+      status: "failed",
+      code: 500,
+    };
+  }
+};
+
 export const getImportantTodos = async () => {
   try {
     await connectDB();

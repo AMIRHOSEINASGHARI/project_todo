@@ -16,4 +16,6 @@ export type SidebarLinkProps = {
   link: string;
   image: JSX.Element;
   title: string;
+  un_completed_todos?: number;
+  important_todos?: number;
 };
