@@ -51,6 +51,7 @@ const AddTodo = ({ important, isGrouped, group }: AddTodoProps) => {
           value={title}
           placeholder="Add a Task"
           onChange={(e) => setTodo(e.target.value)}
+          className="border-slate-400"
         />
       </form>
     </div>
