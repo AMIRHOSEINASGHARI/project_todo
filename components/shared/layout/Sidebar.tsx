@@ -6,7 +6,7 @@ import SidebarUserProfile from "./SidebarUserProfile";
 
 const Sidebar = () => {
   return (
-    <aside className="sm:w-[250px] flex flex-col border-r border-gray-200 fixed z-30 left-0 h-screen bg-white overflow-y-auto sidebarScroll">
+    <aside className="sidebarScroll fixed left-0 z-30 flex h-screen flex-col overflow-y-auto border-r border-gray-200 bg-white sm:w-[300px]">
       <SidebarUserProfile />
       <Separator className="my-3" />
       <SidebarLinks />

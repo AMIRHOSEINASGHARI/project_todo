@@ -12,11 +12,11 @@
 }
 
 .pages_spaces {
-  @apply pt-[20px] pb-[100px] ml-[90px] mr-4 sm:ml-[270px] sm:mr-5 min-h-screen;
+  @apply ml-[90px] mr-4 min-h-screen pb-[100px] pt-[20px] sm:ml-[320px] sm:mr-5;
 }
 
 .btn_icon {
-  @apply w-auto h-auto p-2 rounded-xl text-[21px] bg-transparent;
+  @apply h-auto w-auto rounded-xl bg-transparent p-2 text-[21px];
 }
 
 .btn_color {
@@ -52,13 +52,13 @@
 }
 
 .card {
-  @apply p-3 rounded-md shadow hover:bg-slate-100 Transition;
+  @apply Transition rounded-md p-3 shadow hover:bg-slate-100;
 }
 
 .Grid {
-  @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4;
+  @apply grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3;
 }
 
 .Grid2 {
-  @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4;
+  @apply grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-4;
 }
