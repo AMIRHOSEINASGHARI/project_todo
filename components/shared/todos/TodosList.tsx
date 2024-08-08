@@ -13,11 +13,11 @@ const TodosList = ({ title, todos }: TodosListProps) => {
   return (
     <div className="flex flex-col gap-2">
       {title && (
-        <p className="bg-slate-100 w-fit py-1 px-3 rounded-md">
+        <p className="w-fit rounded-md bg-slate-100 px-3 py-1">
           {title} {todos?.length}
         </p>
       )}
-      <div className="space-y-2 bg-slate-100 p-2 rounded-md">
+      <div className="space-y-2 rounded-md bg-slate-100 p-2">
         {todos?.map((todo) => (
           <TodoCard
             key={todo._id}

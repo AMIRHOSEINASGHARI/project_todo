@@ -30,7 +30,7 @@ const TodoCard = ({
   group_name,
 }: TodoCardProps) => {
   return (
-    <div className="rounded-md p-2 shadow bg-white">
+    <div className="rounded-md bg-white p-2 shadow">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <CompleteTodoAction
@@ -50,7 +50,7 @@ const TodoCard = ({
       </div>
       <div className="mx-[46px]">
         {group_name && (
-          <div className="text-p2 text-yellow-600 flex items-center gap-2">
+          <div className="flex items-center gap-2 text-p2 text-yellow-600">
             <div>{icons.menu}</div>
             <p className="font-medium">{group_name}</p>
           </div>

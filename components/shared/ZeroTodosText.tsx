@@ -1,6 +1,6 @@
-const ZeroTodosText = ({ text = "tasks" }: { text: string }) => {
+const ZeroTodosText = ({ text = "tasks" }: { text?: string }) => {
   return (
-    <div className="w-full h-[30vh] text-center flex justify-center items-center">
+    <div className="flex h-[30vh] w-full items-center justify-center text-center">
       <p className="text-p1">All your {text} show up here.</p>
     </div>
   );

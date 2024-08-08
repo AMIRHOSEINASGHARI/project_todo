@@ -5,6 +5,7 @@ import Information from "./ui/Information";
 import EditProfile from "./ui/EditProfile";
 import TodosInformation from "./ui/TodosInformation";
 import AllTodos from "./ui/AllTodos";
+import SignoutButton from "@/components/shared/SignoutButton";
 
 const SettingsPage = async () => {
   const data = await getUser();
@@ -18,7 +19,10 @@ const SettingsPage = async () => {
 
   return (
     <div className="space-y-5">
-      <EditProfile />
+      <div className="flex items-center justify-between">
+        <EditProfile />
+        <SignoutButton />
+      </div>
       <Information {...info} />
       <TodosInformation
         all_todos={all_todos?.length}

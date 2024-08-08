@@ -23,7 +23,7 @@ const CustomPopover = ({
     <Popover open={open} onOpenChange={onOpenChange}>
       <PopoverTrigger asChild>{popoverButton}</PopoverTrigger>
       <PopoverContent
-        className="bg-white w-[250px] sm:w-[400px] mx-2 sm:mx-5"
+        className="mx-2 w-[250px] bg-white sm:mx-5 sm:w-[400px]"
         side="bottom"
       >
         {content}
