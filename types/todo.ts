@@ -43,3 +43,10 @@ export type TodoDetailsProps = {
   title: string;
   completed: boolean;
 };
+
+export type TodoDetailsFormStateProps = {
+  title: string;
+  note?: string;
+  steps?: TodoSteps[];
+  marks?: TodoMarks[];
+};

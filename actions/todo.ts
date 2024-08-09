@@ -5,14 +5,19 @@ import { revalidatePath } from "next/cache";
 // utils
 import connectDB from "@/utils/connectDB";
 import { getServerSession } from "@/utils/session";
+// mongoose
+import { Types } from "mongoose";
 // models
 import Todo from "@/utils/models/todo";
-// types
-import { CreateTodoProps, Todo as TodoType } from "@/types/todo";
 import Group from "@/utils/models/group";
-import { Group as GroupType } from "@/types/group";
 import User from "@/utils/models/user";
-import { Types } from "mongoose";
+// types
+import {
+  CreateTodoProps,
+  TodoDetailsFormStateProps,
+  Todo as TodoType,
+} from "@/types/todo";
+import { Group as GroupType } from "@/types/group";
 import { User as UserType } from "@/types/user";
 
 export const createTodo = async ({
@@ -118,6 +123,59 @@ export const importantTodo = async ({
 
     return {
       message: "Todo updated",
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Server Error!",
+      status: "failed",
+      code: 500,
+    };
+  }
+};
+
+export const updateTodo = async (
+  _id: string,
+  form: TodoDetailsFormStateProps,
+) => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    const todo = await Todo.findById(_id).lean<TodoType>();
+
+    if (!todo?.user?.equals(session?.userId)) {
+      return {
+        message: "un-authorized! access denied.",
+        status: "failed",
+        code: 404,
+      };
+    }
+
+    const { title, note, marks, steps } = form;
+
+    if (!title) {
+      return {
+        message: "Title cannot be empty",
+        status: "failed",
+        code: 404,
+      };
+    }
+
+    await Todo.findByIdAndUpdate(_id, {
+      title,
+      note,
+      marks,
+      steps,
+    });
+
+    revalidatePath("/", "layout");
+
+    return {
+      message: "Task updated",
       status: "success",
       code: 200,
     };

@@ -5,11 +5,12 @@ import { Dispatch, FormEvent, Fragment, SetStateAction, useState } from "react";
 // next
 import { useRouter } from "next/navigation";
 // types
-import { Todo, TodoMarks, TodoSteps } from "@/types/todo";
+import { Todo, TodoDetailsFormStateProps, TodoSteps } from "@/types/todo";
 // utils
 import { shorterText } from "@/utils/functions";
 // constants
 import { icons } from "@/constants";
+import { marksItems } from "@/constants/ui";
 // cmp
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,14 +20,6 @@ import CompleteTodoAction from "@/components/shared/todos/CompleteTodoAction";
 import ImportantTodoAction from "@/components/shared/todos/ImportantTodoAction";
 // clsx
 import clsx from "clsx";
-import { marksItems } from "@/constants/ui";
-
-type TodoDetailsFormStateProps = {
-  title: string;
-  note?: string;
-  steps?: TodoSteps[];
-  marks?: TodoMarks[];
-};
 
 const TodoDetailsForm = ({ todo }: { todo: Todo }) => {
   const [form, setForm] = useState<TodoDetailsFormStateProps>({
