@@ -15,6 +15,8 @@ import { LuListTodo } from "react-icons/lu";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import {
+  IoIosArrowBack,
+  IoIosCheckmarkCircle,
   IoIosCheckmarkCircleOutline,
   IoIosCloseCircleOutline,
   IoIosInfinite,
@@ -23,6 +25,7 @@ import {
 import { CiFilter, CiSettings } from "react-icons/ci";
 import { CgMenuLeft } from "react-icons/cg";
 import { TiStarFullOutline, TiStarOutline } from "react-icons/ti";
+import { HiOutlinePlus } from "react-icons/hi2";
 
 export const images = {
   logo: "",
@@ -37,7 +40,7 @@ export const icons = {
   eye_open: <PiEye />,
   eye_close: <PiEyeClosed />,
   home: <AiOutlineHome />,
-  plus: <AiOutlinePlusCircle />,
+  plus: <HiOutlinePlus />,
   tasks: <LuListTodo />,
   account: <MdOutlineManageAccounts />,
   power: <PiPower />,
@@ -53,11 +56,13 @@ export const icons = {
   groups: <PiBoundingBoxLight />,
   menu: <CgMenuLeft />,
   check: <IoIosCheckmarkCircleOutline />,
+  checkFill: <IoIosCheckmarkCircle />,
   filter: <CiFilter />,
   star: <TiStarOutline />,
   starFill: <TiStarFullOutline />,
   infinity: <IoIosInfinite />,
   circle: <IoIosRadioButtonOff />,
+  arrowLeft: <IoIosArrowBack />,
 };
 
 export const sidebarMenuLinks = [

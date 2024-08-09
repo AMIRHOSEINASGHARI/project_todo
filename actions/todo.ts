@@ -13,6 +13,7 @@ import Group from "@/utils/models/group";
 import { Group as GroupType } from "@/types/group";
 import User from "@/utils/models/user";
 import { Types } from "mongoose";
+import { User as UserType } from "@/types/user";
 
 export const createTodo = async ({
   title,
@@ -170,6 +171,42 @@ export const getTodos = async () => {
   }
 };
 
+export const getTodo = async (id: string) => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    const user = await User.findById(session?.userId).lean<UserType>();
+    const todo = await Todo.findById(id)
+      .populate({
+        path: "user",
+        model: User,
+        select: "username name _id",
+      })
+      .populate({
+        path: "group",
+        model: Group,
+        select: "group_name",
+      })
+      .lean<TodoType>();
+
+    if (!todo?.user?._id?.equals(user?._id)) {
+      throw new Error("un-authorized! access denied");
+    }
+
+    return {
+      todo,
+      message: "success",
+      status: "success",
+      code: 200,
+    };
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
 export const getSidebarTodos = async () => {
   try {
     await connectDB();
@@ -181,10 +218,10 @@ export const getSidebarTodos = async () => {
     }).lean<TodoType[]>();
 
     const un_completed_todos = todos?.filter(
-      (todo) => todo?.completed === false
+      (todo) => todo?.completed === false,
     )?.length;
     const important_todos = todos?.filter(
-      (todo) => todo?.important === true && todo?.completed === false
+      (todo) => todo?.important === true && todo?.completed === false,
     )?.length;
 
     return {

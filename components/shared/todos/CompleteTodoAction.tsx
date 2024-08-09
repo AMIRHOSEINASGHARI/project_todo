@@ -39,7 +39,7 @@ const CompleteTodoAction = ({ _id, completed }: CompleteTodoActionPorps) => {
         "text-blue-500": completed,
       })}
     >
-      {loading ? <Loader /> : completed ? icons.check : icons.circle}
+      {loading ? <Loader /> : completed ? icons.checkFill : icons.circle}
     </Button>
   );
 };
