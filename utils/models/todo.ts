@@ -1,11 +1,19 @@
+import { TodoMarks } from "@/types/todo";
 import { Schema, model, models } from "mongoose";
+// types
+import {} from "@/types/todo";
 
 const todoSchema = new Schema({
   title: {
     type: String,
     required: true,
   },
-  steps: { type: Array, default: [] },
+  steps: [
+    {
+      title: String,
+      completed: Boolean,
+    },
+  ],
   note: {
     type: String,
     default: "",
@@ -19,8 +27,8 @@ const todoSchema = new Schema({
     default: false,
   },
   marks: {
-    type: Array,
-    default: [],
+    type: [String],
+    enum: ["red", "orange", "yellow", "green", "blue", "purple"],
   },
   isGrouped: { type: Boolean, default: false },
   group: { type: Schema.Types.ObjectId, ref: "Group" },
@@ -31,10 +39,6 @@ const todoSchema = new Schema({
     immutabale: true,
   },
   updatedAt: {
-    type: Date,
-    default: null,
-  },
-  completedAt: {
     type: Date,
     default: null,
   },

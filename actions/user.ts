@@ -35,12 +35,7 @@ export const getUser = async () => {
       .lean<UserType>();
 
     if (!user) {
-      return {
-        data: null,
-        message: "User not found",
-        status: "failed",
-        code: 422,
-      };
+      throw new Error("User not found");
     }
 
     const info = {
@@ -51,13 +46,13 @@ export const getUser = async () => {
     };
     const all_todos = user?.todos;
     const completed_todos = user?.todos?.filter(
-      (todo) => todo?.completed === true
+      (todo) => todo?.completed === true,
     );
     const uncompleted_todos = user?.todos?.filter(
-      (todo) => todo?.completed === false
+      (todo) => todo?.completed === false,
     );
     const important_todos = user?.todos?.filter(
-      (todo) => todo?.important === true
+      (todo) => todo?.important === true,
     );
     const groups = user?.groups;
 
@@ -70,7 +65,7 @@ export const getUser = async () => {
           uncompleted_todos,
           important_todos,
           groups,
-        })
+        }),
       ),
       message: "Success",
       status: "success",

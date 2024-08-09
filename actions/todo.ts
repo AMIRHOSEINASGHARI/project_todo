@@ -136,10 +136,13 @@ export const importantTodo = async ({
   }
 };
 
-export const updateTodo = async (
-  _id: string,
-  form: TodoDetailsFormStateProps,
-) => {
+export const updateTodo = async ({
+  _id,
+  form,
+}: {
+  _id: string;
+  form: TodoDetailsFormStateProps;
+}) => {
   try {
     await connectDB();
 
@@ -170,6 +173,7 @@ export const updateTodo = async (
       note,
       marks,
       steps,
+      updatedAt: new Date(),
     });
 
     revalidatePath("/", "layout");

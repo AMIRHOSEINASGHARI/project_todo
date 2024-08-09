@@ -6,6 +6,8 @@ import { Dispatch, FormEvent, Fragment, SetStateAction, useState } from "react";
 import { useRouter } from "next/navigation";
 // types
 import { Todo, TodoDetailsFormStateProps, TodoSteps } from "@/types/todo";
+// actions
+import { updateTodo } from "@/actions/todo";
 // utils
 import { shorterText } from "@/utils/functions";
 // constants
@@ -20,6 +22,9 @@ import CompleteTodoAction from "@/components/shared/todos/CompleteTodoAction";
 import ImportantTodoAction from "@/components/shared/todos/ImportantTodoAction";
 // clsx
 import clsx from "clsx";
+import useServerAction from "@/hooks/callServerAction";
+import toast from "react-hot-toast";
+import Loader from "@/components/shared/Loader";
 
 const TodoDetailsForm = ({ todo }: { todo: Todo }) => {
   const [form, setForm] = useState<TodoDetailsFormStateProps>({
@@ -28,6 +33,17 @@ const TodoDetailsForm = ({ todo }: { todo: Todo }) => {
     steps: todo?.steps,
     marks: todo?.marks,
   });
+  const { loading, fn } = useServerAction(updateTodo);
+
+  const updateHandler = async () => {
+    const result = await fn({ _id: todo?._id, form });
+
+    if (result?.code === 200) {
+      toast.success(result.message);
+    } else {
+      toast.error(result.message);
+    }
+  };
 
   return (
     <section className="space-y-4">
@@ -64,7 +80,16 @@ const TodoDetailsForm = ({ todo }: { todo: Todo }) => {
       <AddNote form={form} setForm={setForm} />
       <AddMarks form={form} setForm={setForm} />
       <div className="flex justify-end">
-        <Button type="button">Submit</Button>
+        <Button
+          type="button"
+          disabled={loading || !form.title}
+          className={clsx({
+            "text-gray- bg-gray-100 text-gray-500 hover:bg-gray-100": loading,
+          })}
+          onClick={updateHandler}
+        >
+          {loading ? <Loader text="Sending data..." /> : "Submit"}
+        </Button>
       </div>
     </section>
   );
@@ -121,7 +146,7 @@ const AddSteps = ({
     return (
       <div className="mb-2 rounded-lg border bg-slate-50 px-5 py-2">
         {form?.steps?.map((step, index) => (
-          <Fragment key={index}>
+          <Fragment key={-step?._id! || index}>
             <div className="flex items-center gap-2">
               <Button
                 type="button"
@@ -172,17 +197,18 @@ const AddNote = ({
   form: TodoDetailsFormStateProps;
   setForm: Dispatch<SetStateAction<TodoDetailsFormStateProps>>;
 }) => {
-  const [value] = useState(form?.note);
+  const [value, setValue] = useState(form?.note);
 
   return (
     <Textarea
       value={value}
-      onChange={(e) =>
+      onChange={(e) => {
+        setValue(e.target.value);
         setForm({
           ...form,
           note: e.target.value,
-        })
-      }
+        });
+      }}
       placeholder="Add note"
     />
   );
@@ -205,7 +231,6 @@ const AddMarks = ({
               id={item.id}
               checked={!!form?.marks?.find((mark) => mark === item?.id)}
               onCheckedChange={(checked) => {
-                console.log(checked);
                 setForm(
                   !checked
                     ? {

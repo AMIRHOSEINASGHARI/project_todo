@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "@/utils/session";
 // cmp
 import Sidebar from "@/components/shared/layout/Sidebar";
+import { getUser } from "@/actions/user";
 
 const PagesLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = getServerSession();
@@ -14,14 +15,20 @@ const PagesLayout = async ({ children }: { children: React.ReactNode }) => {
     redirect("/login");
   }
 
-  return (
-    <div>
-      <Sidebar />
-      <div className="pages_spaces">
-        <div>{children}</div>
+  const current_user = await getUser();
+
+  if (current_user?.code === 200) {
+    return (
+      <div>
+        <Sidebar />
+        <div className="pages_spaces">
+          <div>{children}</div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return null;
+  }
 };
 
 export default PagesLayout;

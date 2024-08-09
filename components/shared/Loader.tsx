@@ -1,7 +1,6 @@
 "use client";
 
 import { TailSpin } from "react-loader-spinner";
-import clsx from "clsx";
 
 const Loader = ({
   width,
@@ -15,11 +14,7 @@ const Loader = ({
   text?: string;
 }) => {
   return (
-    <div
-      className={clsx("flex items-center gap-3", {
-        "text-gray-700": text,
-      })}
-    >
+    <div className="flex items-center gap-3">
       <TailSpin
         visible={true}
         height={height || 20}

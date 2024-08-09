@@ -11,6 +11,7 @@ export type TodoMarks =
   | "purple";
 
 export type TodoSteps = {
+  _id?: Schema.Types.ObjectId;
   title: string;
   completed: boolean;
 };
