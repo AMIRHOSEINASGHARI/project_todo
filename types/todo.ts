@@ -51,3 +51,8 @@ export type TodoDetailsFormStateProps = {
   steps?: TodoSteps[];
   marks?: TodoMarks[];
 };
+
+export type DeleteTodoActionProps = {
+  _id: string;
+  pushRoute: string;
+};

@@ -193,6 +193,57 @@ export const updateTodo = async ({
   }
 };
 
+export const deleteTodo = async ({ _id }: { _id: string }) => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    const todo = await Todo.findById(_id);
+
+    if (!todo?.user?.equals(session?.userId)) {
+      return {
+        message: "un-authorized! access denied.",
+        status: "failed",
+        code: 404,
+      };
+    }
+
+    if (todo?.isGrouped) {
+      const group = await Group.findById(todo?.group?._id);
+      const todo_index = group?.todos?.findIndex((item: TodoType) =>
+        item?.equals(todo),
+      );
+
+      group?.todos?.splice(todo_index!, 1);
+      await group?.save();
+    }
+
+    const user = await User.findById(todo?.user);
+    const todo_index = user?.todos?.findIndex((item: TodoType) =>
+      item.equals(todo),
+    );
+
+    user?.todos?.splice(todo_index!, 1);
+    await user?.save();
+
+    await Todo.findByIdAndDelete(_id);
+
+    return {
+      message: "Task deleted",
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Server Error!",
+      status: "failed",
+      code: 500,
+    };
+  }
+};
+
 export const getTodos = async () => {
   try {
     await connectDB();

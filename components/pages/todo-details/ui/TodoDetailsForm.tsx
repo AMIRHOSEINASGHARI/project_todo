@@ -7,9 +7,11 @@ import { useRouter } from "next/navigation";
 // types
 import { Todo, TodoDetailsFormStateProps, TodoSteps } from "@/types/todo";
 // actions
-import { updateTodo } from "@/actions/todo";
+import { deleteTodo, updateTodo } from "@/actions/todo";
 // utils
 import { shorterText } from "@/utils/functions";
+// hooks
+import useServerAction from "@/hooks/callServerAction";
 // constants
 import { icons } from "@/constants";
 import { marksItems } from "@/constants/ui";
@@ -18,13 +20,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import Loader from "@/components/shared/Loader";
 import CompleteTodoAction from "@/components/shared/todos/CompleteTodoAction";
 import ImportantTodoAction from "@/components/shared/todos/ImportantTodoAction";
-// clsx
 import clsx from "clsx";
-import useServerAction from "@/hooks/callServerAction";
 import toast from "react-hot-toast";
-import Loader from "@/components/shared/Loader";
+import moment from "moment";
+import DeleteTodoAction from "@/components/shared/todos/DeleteTodoAction";
 
 const TodoDetailsForm = ({ todo }: { todo: Todo }) => {
   const [form, setForm] = useState<TodoDetailsFormStateProps>({
@@ -45,9 +47,15 @@ const TodoDetailsForm = ({ todo }: { todo: Todo }) => {
     }
   };
 
+  const createdAt = moment(todo?.createdAt).calendar();
+  const updatedAt = moment(todo?.updatedAt).calendar() || "";
+
   return (
     <section className="space-y-4">
-      <BackButton _id={todo?._id} />
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <BackButton _id={todo?._id} />
+        <DeleteTodoAction _id={todo?._id} pushRoute="/all" />
+      </div>
       <div className="space-y-2 rounded-md bg-white p-2 shadow">
         <div className="flex items-center justify-between gap-2">
           <CompleteTodoAction
@@ -79,6 +87,19 @@ const TodoDetailsForm = ({ todo }: { todo: Todo }) => {
       </div>
       <AddNote form={form} setForm={setForm} />
       <AddMarks form={form} setForm={setForm} />
+      <div className="space-y-2 rounded-md bg-white p-4 shadow">
+        <span className="text-sm">More details</span>
+        <ul className="ml-10 list-disc">
+          <li>
+            <span className="text-p3">Created At: {createdAt}</span>
+          </li>
+          {todo?.updatedAt && (
+            <li>
+              <span className="text-p3">Updated At: {updatedAt}</span>
+            </li>
+          )}
+        </ul>
+      </div>
       <div className="flex justify-end">
         <Button
           type="button"
@@ -180,7 +201,7 @@ const AddSteps = ({
           {!value ? icons.plus : icons.circle}
         </div>
         <Input
-          placeholder="Add step"
+          placeholder={form?.steps?.length !== 0 ? "Next step" : "Add step"}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           className="border-none placeholder:text-sm placeholder:text-blue-500"
@@ -223,7 +244,9 @@ const AddMarks = ({
 }) => {
   return (
     <div className="flex flex-col gap-2 space-y-2 rounded-md bg-white p-4 shadow">
-      <span className="text-sm text-blue-500">Add marks</span>
+      <span className="text-sm text-blue-500">
+        {form?.marks?.length !== 0 ? "Marks" : "Add marks"}
+      </span>
       <div className="mx-5 space-y-3">
         {marksItems.map((item) => (
           <div key={item.id} className="flex items-center gap-3">
