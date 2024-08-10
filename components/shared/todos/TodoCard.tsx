@@ -1,13 +1,16 @@
+// next
+import Link from "next/link";
 // types
 import { TodoMarks, TodoSteps } from "@/types/todo";
+// cmp
+import { icons } from "@/constants";
 // cmp
 import CompleteTodoAction from "./CompleteTodoAction";
 import ImportantTodoAction from "./ImportantTodoAction";
 // clsx
 import clsx from "clsx";
-import { icons } from "@/constants";
-import TodoDetails from "../todo-details/TodoDetails";
-import Link from "next/link";
+import TodoMarkBadge from "../TodoMarkBadge";
+import CustomTooltip from "../CustomTooltip";
 
 type TodoCardProps = {
   _id: string;
@@ -24,15 +27,20 @@ const TodoCard = ({
   _id,
   completed,
   title,
-  steps,
-  note,
   important,
-  marks,
   group_name,
+  note,
+  steps,
+  marks,
 }: TodoCardProps) => {
   return (
     <div className="rounded-md bg-white p-2 shadow">
-      <div className="flex items-center justify-between">
+      <div
+        className={clsx("flex items-center justify-between", {
+          "mb-2":
+            group_name || note || steps?.length !== 0 || marks?.length !== 0,
+        })}
+      >
         <div className="flex items-center gap-2">
           <CompleteTodoAction
             completed={JSON.parse(JSON.stringify(completed))}
@@ -52,13 +60,28 @@ const TodoCard = ({
           _id={JSON.parse(JSON.stringify(_id))}
         />
       </div>
-      <div className="mx-[46px]">
+      <div className="ml-[46px] mr-2 flex flex-wrap items-center gap-3 text-slate-400 md:gap-4">
         {group_name && (
-          <div className="flex items-center gap-2 text-p2 text-yellow-600">
-            <div>{icons.menu}</div>
-            <p className="font-medium">{group_name}</p>
-          </div>
+          <CustomTooltip
+            trigger={<span className="text-p3 sm:text-p2">{group_name}</span>}
+            content={`In group: ${group_name}`}
+          />
         )}
+        {steps?.length !== 0 && (
+          <CustomTooltip
+            trigger={
+              <span className="text-p3 sm:text-p2">
+                {steps?.filter((s) => s?.completed)?.length} of {steps?.length}
+              </span>
+            }
+            content={`${steps?.filter((s) => !s?.completed)?.length} step left`}
+          />
+        )}
+        {note && (
+          <CustomTooltip trigger={<div>{icons.document}</div>} content={note} />
+        )}
+        {marks?.length !== 0 &&
+          marks?.map((m) => <TodoMarkBadge key={m} mark={m} />)}
       </div>
     </div>
   );
