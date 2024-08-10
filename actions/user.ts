@@ -56,17 +56,19 @@ export const getUser = async () => {
     );
     const groups = user?.groups;
 
+    const data = JSON.parse(
+      JSON.stringify({
+        info,
+        all_todos,
+        completed_todos,
+        uncompleted_todos,
+        important_todos,
+        groups,
+      }),
+    );
+
     return {
-      data: JSON.parse(
-        JSON.stringify({
-          info,
-          all_todos,
-          completed_todos,
-          uncompleted_todos,
-          important_todos,
-          groups,
-        }),
-      ),
+      data,
       message: "Success",
       status: "success",
       code: 200,

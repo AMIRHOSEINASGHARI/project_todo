@@ -210,22 +210,10 @@ export const deleteTodo = async ({ _id }: { _id: string }) => {
     }
 
     if (todo?.isGrouped) {
-      const group = await Group.findById(todo?.group?._id);
-      const todo_index = group?.todos?.findIndex((item: TodoType) =>
-        item?.equals(todo),
-      );
-
-      group?.todos?.splice(todo_index!, 1);
-      await group?.save();
+      await Group.updateOne({ _id: todo?.group }, { $pull: { todos: _id } });
     }
 
-    const user = await User.findById(todo?.user);
-    const todo_index = user?.todos?.findIndex((item: TodoType) =>
-      item.equals(todo),
-    );
-
-    user?.todos?.splice(todo_index!, 1);
-    await user?.save();
+    await User.updateOne({ _id: todo?.user }, { $pull: { todos: _id } });
 
     await Todo.findByIdAndDelete(_id);
 
