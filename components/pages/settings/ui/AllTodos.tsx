@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import CompleteTodoAction from "@/components/shared/todos/CompleteTodoAction";
 import ImportantTodoAction from "@/components/shared/todos/ImportantTodoAction";
+import DeleteTodoAction from "@/components/shared/todos/DeleteTodoAction";
 // clsx
 import clsx from "clsx";
 
@@ -29,6 +30,7 @@ const AllTodos = ({ todos }: { todos: [] | [Todo] | undefined }) => {
     "Title",
     "Completed",
     "Important",
+    "Delete",
     "IsGrouped",
     "GroupName",
     "Steps",
@@ -54,7 +56,7 @@ const AllTodos = ({ todos }: { todos: [] | [Todo] | undefined }) => {
               <Button
                 asChild
                 variant="link"
-                className="p-0 hover:text-blue-500 text-[14px]"
+                className="p-0 text-[14px] hover:text-blue-500"
               >
                 <Link href={`/todos/${todo?._id}`}>
                   {shorterText(todo?._id, 5)}
@@ -63,7 +65,7 @@ const AllTodos = ({ todos }: { todos: [] | [Todo] | undefined }) => {
             </TableCell>
             <TableCell
               className={clsx("min-w-[150px]", {
-                "line-through text-gray-400": todo?.completed,
+                "text-gray-400 line-through": todo?.completed,
                 "font-bold": !todo?.completed,
               })}
             >
@@ -77,6 +79,9 @@ const AllTodos = ({ todos }: { todos: [] | [Todo] | undefined }) => {
                 _id={todo?._id}
                 important={todo?.important}
               />
+            </TableCell>
+            <TableCell>
+              <DeleteTodoAction _id={todo?._id} />
             </TableCell>
             <TableCell
               className={clsx("w-[20px] text-[21px]", {

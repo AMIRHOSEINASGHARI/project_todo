@@ -25,7 +25,9 @@ const DeleteTodoAction = ({ _id, pushRoute }: DeleteTodoActionProps) => {
 
     if (result?.code === 200) {
       toast.success(result.message);
-      router.push(pushRoute);
+      if (pushRoute) {
+        router.push(pushRoute);
+      }
       router.refresh();
     } else {
       toast.error(result.message);
