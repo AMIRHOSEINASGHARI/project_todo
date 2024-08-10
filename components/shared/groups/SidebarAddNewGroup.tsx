@@ -51,7 +51,7 @@ const SidebarAddNewGroup = () => {
   const popoverButton = (
     <Button
       variant="ghost"
-      className="flex w-full items-center justify-start gap-4 text-blue-500"
+      className="flex w-fit items-center justify-start gap-4 text-blue-500 max-sm:p-2 sm:w-full"
     >
       <div className="icon_size">{icons.plus}</div>
       <p className="max-sm:hidden">New Group</p>
@@ -60,7 +60,7 @@ const SidebarAddNewGroup = () => {
 
   const content = (
     <form className="space-y-3" onSubmit={onSubmit}>
-      <p className="text-p1 font-medium">Create new group</p>
+      <span className="text-p1 font-medium">Create new group</span>
       <Input
         type="text"
         value={value}

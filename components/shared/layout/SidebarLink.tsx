@@ -26,7 +26,7 @@ const SidebarLink = ({
       asChild
       key={link}
       variant="ghost"
-      className="justify-start max-sm:h-auto max-sm:w-auto max-sm:rounded-xl max-sm:p-2 max-sm:hover:bg-slate-900 max-sm:hover:text-white"
+      className="justify-start max-sm:h-fit max-sm:w-fit max-sm:rounded-xl max-sm:p-2 max-sm:hover:bg-slate-900 max-sm:hover:text-white"
     >
       <Link
         href={link}
