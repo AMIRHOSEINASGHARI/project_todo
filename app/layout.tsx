@@ -32,8 +32,8 @@ export default function RootLayout({
       <ReactQueryClientProvider>
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
+            "bg-background min-h-screen font-sans antialiased",
+            fontSans.variable,
           )}
         >
           {children}

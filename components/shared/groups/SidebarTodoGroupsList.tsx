@@ -15,7 +15,7 @@ const SidebarTodoGroupsList = async () => {
   if (groups?.length === 0) return null;
 
   return (
-    <div className="flex flex-col">
+    <>
       {groups?.map((group) => (
         <SidebarLink
           key={group?._id}
@@ -25,7 +25,7 @@ const SidebarTodoGroupsList = async () => {
           group_todos={group?.todos?.length}
         />
       ))}
-    </div>
+    </>
   );
 };
 

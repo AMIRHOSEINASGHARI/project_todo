@@ -1,7 +1,7 @@
 "use client";
 
 // react
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 // next
 import { useRouter } from "next/navigation";
 // actions
@@ -29,7 +29,9 @@ const SidebarAddNewGroup = () => {
     setOpen(!open);
   };
 
-  const groupHandler = async () => {
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
     if (!value) return;
 
     const result = await fn({
@@ -49,7 +51,7 @@ const SidebarAddNewGroup = () => {
   const popoverButton = (
     <Button
       variant="ghost"
-      className="flex items-center justify-start gap-4 w-full text-blue-500"
+      className="flex w-full items-center justify-start gap-4 text-blue-500"
     >
       <div className="icon_size">{icons.plus}</div>
       <p className="max-sm:hidden">New Group</p>
@@ -57,7 +59,7 @@ const SidebarAddNewGroup = () => {
   );
 
   const content = (
-    <div className="space-y-3">
+    <form className="space-y-3" onSubmit={onSubmit}>
       <p className="text-p1 font-medium">Create new group</p>
       <Input
         type="text"
@@ -66,14 +68,14 @@ const SidebarAddNewGroup = () => {
         onChange={(e) => setValue(e.target.value)}
       />
       <Button
+        type="submit"
         className={clsx("w-full", {
           "bg-slate-100 text-black": loading,
         })}
-        onClick={groupHandler}
       >
         {loading ? <Loader /> : "Submit"}
       </Button>
-    </div>
+    </form>
   );
 
   return (

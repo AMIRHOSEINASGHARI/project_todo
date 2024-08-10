@@ -9,7 +9,7 @@ const SidebarLinks = async () => {
   const data = await getSidebarTodos();
 
   return (
-    <div className="flex flex-col gap-2 px-2 sm:px-5">
+    <>
       {sidebarMenuLinks.map((link) => (
         <SidebarLink
           key={link.link}
@@ -20,7 +20,7 @@ const SidebarLinks = async () => {
           important_todos={data?.important_todos}
         />
       ))}
-    </div>
+    </>
   );
 };
 
