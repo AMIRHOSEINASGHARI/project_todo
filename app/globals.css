@@ -12,7 +12,11 @@
 }
 
 .pages_spaces {
-  @apply ml-[90px] mr-4 min-h-screen pb-[100px] pt-[20px] sm:ml-[320px] sm:mr-5;
+  @apply mx-4 min-h-screen pb-[100px] pt-[20px] sm:ml-[320px] sm:mr-5;
+}
+
+.sidebar {
+  @apply sidebarScroll fixed left-0 z-30 flex h-screen flex-col overflow-y-auto border-r border-gray-200 bg-white;
 }
 
 .btn_icon {

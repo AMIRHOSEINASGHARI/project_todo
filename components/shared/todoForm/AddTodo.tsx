@@ -41,7 +41,7 @@ const AddTodo = ({ important, isGrouped, group }: AddTodoProps) => {
   };
 
   return (
-    <div className="fixed bottom-0 left-[69px] right-0 z-10 border-t bg-white px-5 py-4 sm:left-[300px]">
+    <div className="fixed bottom-0 left-0 right-0 z-10 border-t bg-white px-5 py-4 sm:left-[300px]">
       <form className="flex items-center gap-1" onSubmit={onSubmit}>
         <Button type="submit" variant="icon" disabled={loading}>
           {loading ? <Loader /> : icons.paper}

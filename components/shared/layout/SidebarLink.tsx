@@ -25,13 +25,13 @@ const SidebarLink = ({
     <Button asChild key={link} variant="ghost" className="justify-start pr-2">
       <Link
         href={link}
-        className={clsx("flex items-center justify-between w-full relative", {
+        className={clsx("relative flex w-full items-center justify-between", {
           "bg-slate-100 text-blue-600": pathname === link,
         })}
       >
         <div className="flex items-center gap-4">
           <div className="icon_size">{image}</div>
-          <span className="max-sm:hidden">{title}</span>
+          <span>{title}</span>
         </div>
         {title === "All" && un_completed_todos !== 0 && (
           <CustomNumberBadge title={un_completed_todos} />
@@ -43,7 +43,7 @@ const SidebarLink = ({
           <CustomNumberBadge title={group_todos} />
         )}
         {pathname === link && (
-          <div className="w-[4px] h-[20px] bg-blue-500 rounded-[10px] absolute left-0"></div>
+          <div className="absolute left-0 h-[20px] w-[4px] rounded-[10px] bg-blue-500"></div>
         )}
       </Link>
     </Button>

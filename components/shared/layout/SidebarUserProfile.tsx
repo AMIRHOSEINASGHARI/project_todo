@@ -12,7 +12,7 @@ const SidebarUserProfile = () => {
   return (
     <Link
       href="/settings"
-      className="sm:px-5 sm:pt-5 p-2 pt-[20px] pb-0 flex items-center max-sm:justify-center gap-4"
+      className="flex items-center gap-4 p-2 pb-0 pt-[20px]"
     >
       <Image
         src={images.person}
@@ -20,10 +20,10 @@ const SidebarUserProfile = () => {
         height={150}
         alt="user"
         priority
-        className="w-[40px] h-[40px]"
+        className="h-[40px] w-[40px]"
       />
-      <div className="max-sm:hidden">
-        <p className="font-bold -mb-1">{session?.username}</p>
+      <div>
+        <p className="-mb-1 font-bold">{session?.username}</p>
         <p className="text-p1 capitalize">{session?.name}</p>
       </div>
     </Link>

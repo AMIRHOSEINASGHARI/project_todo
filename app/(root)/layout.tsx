@@ -20,7 +20,9 @@ const PagesLayout = async ({ children }: { children: React.ReactNode }) => {
   if (current_user?.code === 200) {
     return (
       <div>
-        <Sidebar />
+        <aside className="sidebar w-[300px] max-sm:hidden">
+          <Sidebar />
+        </aside>
         <div className="pages_spaces">
           <div>{children}</div>
         </div>
