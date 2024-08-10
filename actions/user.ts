@@ -34,10 +34,6 @@ export const getUser = async () => {
       .select("-password")
       .lean<UserType>();
 
-    if (!user) {
-      throw new Error("User not found");
-    }
-
     const info = {
       username: user?.username,
       name: user?.name,
