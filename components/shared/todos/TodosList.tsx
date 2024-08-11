@@ -64,6 +64,7 @@ const TodosList = ({ title, todos }: TodosListProps) => {
               title={todo.title}
               steps={todo.steps}
               group_name={todo?.group?.group_name}
+              group_id={todo?.group?._id}
             />
           ))}
         </div>

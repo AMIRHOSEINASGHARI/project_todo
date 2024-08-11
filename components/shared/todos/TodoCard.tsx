@@ -21,6 +21,7 @@ type TodoCardProps = {
   important: boolean;
   marks: [TodoMarks] | [];
   group_name?: string | null;
+  group_id?: string | undefined;
 };
 
 const TodoCard = ({
@@ -32,6 +33,7 @@ const TodoCard = ({
   note,
   steps,
   marks,
+  group_id,
 }: TodoCardProps) => {
   return (
     <div className="rounded-md bg-white p-2 shadow">
@@ -63,7 +65,11 @@ const TodoCard = ({
       <div className="ml-[46px] mr-2 flex flex-wrap items-center gap-3 text-slate-400 md:gap-4">
         {group_name && (
           <CustomTooltip
-            trigger={<span className="text-p3 sm:text-p2">{group_name}</span>}
+            trigger={
+              <Link href={`/groups/${group_id}`} className="text-p3 sm:text-p2">
+                {group_name}
+              </Link>
+            }
             content={`In group: ${group_name}`}
           />
         )}
