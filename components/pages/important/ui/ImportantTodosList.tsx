@@ -14,10 +14,7 @@ const ImportantTodosList = async () => {
 
   return (
     <section>
-      <TodosList
-        title={JSON.parse(JSON.stringify("Important"))}
-        todos={JSON.parse(JSON.stringify(important_todos))}
-      />
+      <TodosList todos={JSON.parse(JSON.stringify(important_todos))} />
     </section>
   );
 };

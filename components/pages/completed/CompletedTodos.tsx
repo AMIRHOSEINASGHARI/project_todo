@@ -14,10 +14,7 @@ const CompletedTodos = async () => {
 
   return (
     <section>
-      <TodosList
-        title={JSON.parse(JSON.stringify("Completed"))}
-        todos={JSON.parse(JSON.stringify(completed_todos))}
-      />
+      <TodosList todos={JSON.parse(JSON.stringify(completed_todos))} />
     </section>
   );
 };
