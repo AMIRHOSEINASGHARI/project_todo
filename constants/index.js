@@ -12,7 +12,10 @@ import {
   PiUserLight,
 } from "react-icons/pi";
 import { LuListTodo } from "react-icons/lu";
-import { MdOutlineManageAccounts } from "react-icons/md";
+import {
+  MdOutlineKeyboardArrowDown,
+  MdOutlineManageAccounts,
+} from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import {
   IoIosArrowBack,
@@ -63,6 +66,7 @@ export const icons = {
   infinity: <IoIosInfinite />,
   circle: <IoIosRadioButtonOff />,
   arrowLeft: <IoIosArrowBack />,
+  arrowDown: <MdOutlineKeyboardArrowDown />,
 };
 
 export const sidebarMenuLinks = [

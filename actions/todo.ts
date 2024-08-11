@@ -242,7 +242,11 @@ export const getTodos = async () => {
       completed: false,
       user: session?.userId,
       isGrouped: false,
-    }).lean<TodoType[]>();
+    })
+      .sort({
+        important: -1,
+      })
+      .lean<TodoType[]>();
 
     const groups = await Group.find({
       user: session?.userId,

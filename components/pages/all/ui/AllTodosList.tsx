@@ -17,10 +17,19 @@ const AllTodosList = async () => {
     return <ZeroTodosText text="incompleted tasks" />;
 
   return (
-    <section className="space-y-10">
-      <TodosList title="Tasks" todos={un_grouped_todos} />
+    <section className="space-y-5">
+      <TodosList
+        title={JSON.parse(JSON.stringify("Tasks"))}
+        todos={JSON.parse(JSON.stringify(un_grouped_todos))}
+      />
       {groups?.length !== 0 &&
-        groups.map((item) => <TodosList key={item._id} todos={item.todos} />)}
+        groups.map((group) => (
+          <TodosList
+            key={JSON.parse(JSON.stringify(group._id))}
+            title={JSON.parse(JSON.stringify(group.group_name))}
+            todos={JSON.parse(JSON.stringify(group.todos))}
+          />
+        ))}
     </section>
   );
 };
