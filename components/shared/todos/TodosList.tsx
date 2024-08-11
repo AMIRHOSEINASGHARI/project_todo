@@ -38,12 +38,7 @@ const TodosList = ({ title, todos }: TodosListProps) => {
       {title && (
         <Button
           variant="ghost"
-          className={clsx(
-            "Transition w-fit rounded-md bg-slate-100 px-3 py-1",
-            {
-              "text-slate-400": !show,
-            },
-          )}
+          className="w-fit rounded-md bg-slate-100 px-3 py-1"
           onClick={() => setShow(!show)}
         >
           <div
