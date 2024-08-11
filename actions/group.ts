@@ -42,7 +42,7 @@ export const createNewGroup = async ({
           message: "Group created",
           status: "success",
           code: 200,
-        })
+        }),
       );
     } else {
       return {
@@ -97,13 +97,14 @@ export const getGroup = async (id: string) => {
   try {
     await connectDB();
 
-    const session = getServerSession();
-
     const group = await Group.findById(id)
       .populate({
         path: "todos",
         model: Todo,
         match: { completed: { $ne: true } },
+        options: {
+          sort: { important: -1 },
+        },
       })
       .lean<GroupType>();
 

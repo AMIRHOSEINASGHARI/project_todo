@@ -256,6 +256,9 @@ export const getTodos = async () => {
         path: "todos",
         model: Todo,
         match: { completed: { $ne: true } },
+        options: {
+          sort: { important: -1 },
+        },
         populate: {
           path: "group",
           model: Group,
