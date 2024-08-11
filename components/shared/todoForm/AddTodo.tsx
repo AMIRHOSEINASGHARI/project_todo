@@ -33,9 +33,8 @@ const AddTodo = ({ important, isGrouped, group }: AddTodoProps) => {
 
     if (result.code !== 200) {
       toast.error(result.message);
-    }
-
-    if (result.code === 200) {
+    } else {
+      toast.success(result.message);
       setTodo("");
     }
   };

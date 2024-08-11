@@ -144,11 +144,11 @@ const AddSteps = ({
     e.preventDefault();
 
     if (value) {
-      setForm({
+      setForm(() => ({
         ...form,
         steps: [...(form?.steps || []), { title: value, completed: false }],
-      });
-      setValue("");
+      }));
+      setValue(() => "");
     }
   };
 
@@ -164,11 +164,40 @@ const AddSteps = ({
       });
     };
 
+    const completeStep = (index: number) => {
+      let steps = form?.steps;
+      steps![index] = {
+        ...steps![index],
+        completed: !steps![index]?.completed,
+      };
+
+      setForm({
+        ...form,
+        steps,
+      });
+    };
+
     return (
-      <div className="mb-2 rounded-lg border bg-slate-50 px-5 py-2">
+      <div className="m-5 mb-2 rounded-lg border bg-white p-2">
         {form?.steps?.map((step, index) => (
           <Fragment key={-step?._id! || index}>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Button
+                  type="button"
+                  variant="icon"
+                  onClick={() => completeStep(index)}
+                >
+                  {step?.completed ? icons.checkFill : icons.circle}
+                </Button>
+                <span
+                  className={clsx("text-p2 text-slate-400", {
+                    "line-through": step?.completed,
+                  })}
+                >
+                  {step?.title}
+                </span>
+              </div>
               <Button
                 type="button"
                 variant="icon"
@@ -176,7 +205,6 @@ const AddSteps = ({
               >
                 {icons.trash}
               </Button>
-              <span className="text-p2">{step?.title}</span>
             </div>
             {index < form?.steps?.length! - 1 && (
               <div className="m-2">
@@ -205,6 +233,7 @@ const AddSteps = ({
           value={value}
           onChange={(e) => setValue(e.target.value)}
           className="border-none placeholder:text-sm placeholder:text-blue-500"
+          onBlur={onSubmit}
         />
       </div>
     </form>
