@@ -9,9 +9,11 @@ import { getServerSession } from "@/utils/session";
 import Group from "@/utils/models/group";
 // types
 import { Group as GroupType } from "@/types/group";
+// mongoose
+import { Types } from "mongoose";
+// models
 import Todo from "@/utils/models/todo";
 import User from "@/utils/models/user";
-import { Types } from "mongoose";
 
 export const createNewGroup = async ({
   group_name,
@@ -51,6 +53,62 @@ export const createNewGroup = async ({
         code: 500,
       };
     }
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Server Error!",
+      status: "failed",
+      code: 500,
+    };
+  }
+};
+
+export const updateGroup = async ({
+  _id,
+  group_name,
+}: {
+  _id: string;
+  group_name: string;
+}) => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    if (!session) {
+      return {
+        message: "un-authorized",
+        status: "failed",
+        code: 404,
+      };
+    }
+
+    const group = await Group.findById(_id).lean<GroupType>();
+
+    if (!group?.user?.equals(session?.userId)) {
+      return {
+        message: "un-authorized! access denied",
+        status: "failed",
+        code: 404,
+      };
+    }
+
+    console.log({
+      _id,
+      group_name,
+    });
+
+    await Group.findByIdAndUpdate(_id, {
+      group_name,
+    });
+
+    revalidatePath("/", "layout");
+
+    return {
+      message: "Group updated",
+      status: "success",
+      code: 200,
+    };
   } catch (error) {
     console.log(error);
     return {

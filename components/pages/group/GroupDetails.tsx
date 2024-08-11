@@ -5,6 +5,8 @@ import { icons } from "@/constants";
 // cmp
 import AddTodo from "@/components/shared/todoForm/AddTodo";
 import TodosList from "@/components/shared/todos/TodosList";
+import ZeroTodosText from "@/components/shared/ZeroTodosText";
+import GroupDetailsForm from "./ui/GroupDetailsForm";
 
 const GroupDetails = async ({ id }: { id: string }) => {
   const data = await getGroup(id);
@@ -13,10 +15,13 @@ const GroupDetails = async ({ id }: { id: string }) => {
 
   return (
     <div>
-      <div className="mb-5 flex items-center gap-4">
-        <div className="text-[30px]">{icons.menu}</div>
-        <h1 className="h2">{group?.group_name}</h1>
-      </div>
+      <GroupDetailsForm
+        _id={JSON.parse(JSON.stringify(id))}
+        group_name={JSON.parse(JSON.stringify(group?.group_name))}
+      />
+      {group?.todos?.length === 0 && (
+        <ZeroTodosText text={group?.group_name + " tasks"} />
+      )}
       <TodosList todos={JSON.parse(JSON.stringify(group?.todos))} />
       <AddTodo
         isGrouped={JSON.parse(JSON.stringify(true))}
