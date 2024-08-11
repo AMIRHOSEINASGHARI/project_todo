@@ -37,6 +37,13 @@ const GroupDetailsForm = ({
     }
   };
 
+  const onBlur = () => {
+    if (!value) {
+      setValue(group_name);
+      return;
+    }
+  };
+
   return (
     <form onSubmit={onSubmit}>
       <div className="mb-5 flex items-center gap-3">
@@ -51,7 +58,7 @@ const GroupDetailsForm = ({
           )}
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          onBlur={() => !value && setValue(group_name)}
+          onBlur={onBlur}
         />
       </div>
     </form>

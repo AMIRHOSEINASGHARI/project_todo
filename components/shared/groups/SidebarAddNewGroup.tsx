@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/button";
 import { icons } from "@/constants";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
-import CustomPopover from "../CustomPopover";
 import Loader from "../Loader";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 // clsx
 import clsx from "clsx";
 
@@ -48,7 +48,7 @@ const SidebarAddNewGroup = () => {
     }
   };
 
-  const popoverButton = (
+  const dialogTrigger = (
     <Button
       variant="ghost"
       className="flex w-fit items-center justify-start gap-4 text-blue-500 max-sm:p-2 sm:w-full"
@@ -79,12 +79,10 @@ const SidebarAddNewGroup = () => {
   );
 
   return (
-    <CustomPopover
-      popoverButton={popoverButton}
-      content={content}
-      open={open}
-      onOpenChange={onOpenChange}
-    />
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogTrigger asChild>{dialogTrigger}</DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">{content}</DialogContent>
+    </Dialog>
   );
 };
 
