@@ -2,12 +2,14 @@
 
 // react
 import { FormEvent, useState } from "react";
+// hooks
+import useServerAction from "@/hooks/callServerAction";
+// actions
+import { updateGroup } from "@/actions/group";
 // constants
 import { icons } from "@/constants";
 // cmp
 import { Input } from "@/components/ui/input";
-import useServerAction from "@/hooks/callServerAction";
-import { updateGroup } from "@/actions/group";
 import toast from "react-hot-toast";
 import clsx from "clsx";
 

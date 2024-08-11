@@ -7,6 +7,7 @@ import AddTodo from "@/components/shared/todoForm/AddTodo";
 import TodosList from "@/components/shared/todos/TodosList";
 import ZeroTodosText from "@/components/shared/ZeroTodosText";
 import GroupDetailsForm from "./ui/GroupDetailsForm";
+import DeleteGroup from "./ui/DeleteGroup";
 
 const GroupDetails = async ({ id }: { id: string }) => {
   const data = await getGroup(id);
@@ -19,6 +20,7 @@ const GroupDetails = async ({ id }: { id: string }) => {
         _id={JSON.parse(JSON.stringify(id))}
         group_name={JSON.parse(JSON.stringify(group?.group_name))}
       />
+      <DeleteGroup _id={JSON.parse(JSON.stringify(id))} />
       {group?.todos?.length === 0 && (
         <ZeroTodosText text={group?.group_name + " tasks"} />
       )}

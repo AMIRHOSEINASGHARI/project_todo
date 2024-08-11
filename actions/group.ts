@@ -93,11 +93,6 @@ export const updateGroup = async ({
       };
     }
 
-    console.log({
-      _id,
-      group_name,
-    });
-
     await Group.findByIdAndUpdate(_id, {
       group_name,
     });
@@ -106,6 +101,52 @@ export const updateGroup = async ({
 
     return {
       message: "Group updated",
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Server Error!",
+      status: "failed",
+      code: 500,
+    };
+  }
+};
+
+export const deleteGroup = async ({ _id }: { _id: string }) => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    if (!session) {
+      return {
+        message: "un-authorized",
+        status: "failed",
+        code: 404,
+      };
+    }
+
+    const group = await Group.findById(_id).lean<GroupType>();
+
+    if (!group?.user?.equals(session?.userId)) {
+      return {
+        message: "un-authorized! access denied",
+        status: "failed",
+        code: 404,
+      };
+    }
+
+    await User.findOneAndUpdate(
+      { _id: session?.userId },
+      { $pull: { groups: _id } },
+    );
+    await Todo.deleteMany({ group: _id });
+    await Group.findByIdAndDelete(_id);
+
+    return {
+      message: "Group deleted",
       status: "success",
       code: 200,
     };
