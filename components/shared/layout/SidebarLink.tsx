@@ -31,7 +31,7 @@ const SidebarLink = ({
       <Link
         href={link}
         className={clsx("relative flex w-full items-center justify-between", {
-          "sm:dark:bg-dark3 bg-slate-900 text-white dark:bg-slate-300 dark:text-black sm:bg-slate-100 sm:text-blue-600 sm:dark:text-blue-400":
+          "sm:dark:bg-dark3 sm:bg-slate-100 sm:text-blue-600 sm:dark:text-blue-400 max-sm:bg-slate-900 max-sm:text-white dark:max-sm:bg-slate-600":
             pathname === link,
         })}
       >
