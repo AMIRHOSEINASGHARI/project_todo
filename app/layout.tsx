@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
 import { Toaster } from "react-hot-toast";
 import ThemeProvider from "@/providers/ThemeProvider";
+import MobileDarkMode from "@/components/shared/MobileDarkMode";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({
             )}
           >
             {children}
+            <MobileDarkMode />
             <Toaster
               toastOptions={{
                 className: "dark:bg-dark3 dark:text-light2",
