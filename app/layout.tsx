@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 // shadcn ui
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
 import { Toaster } from "react-hot-toast";
+import ThemeProvider from "@/providers/ThemeProvider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -29,17 +30,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ReactQueryClientProvider>
-        <body
-          className={cn(
-            "bg-background min-h-screen font-sans antialiased",
-            fontSans.variable,
-          )}
-        >
-          {children}
-          <Toaster />
-        </body>
-      </ReactQueryClientProvider>
+      <ThemeProvider>
+        <ReactQueryClientProvider>
+          <body
+            className={cn(
+              "bg-background dark:bg-dark1 dark:text-light1 min-h-screen font-sans antialiased",
+              fontSans.variable,
+            )}
+          >
+            {children}
+            <Toaster
+              toastOptions={{
+                className: "dark:bg-dark3 dark:text-light2",
+              }}
+            />
+          </body>
+        </ReactQueryClientProvider>
+      </ThemeProvider>
     </html>
   );
 }

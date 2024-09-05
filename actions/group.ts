@@ -200,9 +200,9 @@ export const getGroup = async (id: string) => {
       .populate({
         path: "todos",
         model: Todo,
-        match: { completed: { $ne: true } },
+        // match: { completed: { $ne: true } },
         options: {
-          sort: { important: -1 },
+          sort: { important: -1, completed: 1 },
         },
       })
       .lean<GroupType>();

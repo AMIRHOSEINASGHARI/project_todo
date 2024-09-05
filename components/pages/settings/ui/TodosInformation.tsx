@@ -26,24 +26,26 @@ const TodosInformation = ({
   ];
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          {headerTitls.map((i) => (
-            <TableHead key={i}>{i}</TableHead>
-          ))}
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>{all_todos}</TableCell>
-          <TableCell>{completed_todos}</TableCell>
-          <TableCell>{uncompleted_todos}</TableCell>
-          <TableCell>{important_todos}</TableCell>
-          <TableCell>{groups}</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <div className="tableContainer">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {headerTitls.map((i) => (
+              <TableHead key={i}>{i}</TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow className="hover:bg-transparent dark:hover:bg-transparent">
+            <TableCell className="py-2">{all_todos}</TableCell>
+            <TableCell className="py-2">{completed_todos}</TableCell>
+            <TableCell className="py-2">{uncompleted_todos}</TableCell>
+            <TableCell className="py-2">{important_todos}</TableCell>
+            <TableCell className="py-2">{groups}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

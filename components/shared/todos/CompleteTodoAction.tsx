@@ -36,7 +36,7 @@ const CompleteTodoAction = ({ _id, completed }: CompleteTodoActionPorps) => {
       onClick={completeHandler}
       disabled={loading}
       className={clsx({
-        "text-blue-500": completed,
+        "text-blue-500 dark:text-blue-500": completed,
       })}
     >
       {loading ? <Loader /> : completed ? icons.checkFill : icons.circle}

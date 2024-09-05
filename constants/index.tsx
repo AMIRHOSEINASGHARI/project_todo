@@ -16,7 +16,11 @@ import {
   MdOutlineKeyboardArrowDown,
   MdOutlineManageAccounts,
 } from "react-icons/md";
-import { IoSearchOutline } from "react-icons/io5";
+import {
+  IoMoonOutline,
+  IoSearchOutline,
+  IoSunnyOutline,
+} from "react-icons/io5";
 import {
   IoIosArrowBack,
   IoIosCheckmarkCircle,
@@ -67,6 +71,8 @@ export const icons = {
   circle: <IoIosRadioButtonOff />,
   arrowLeft: <IoIosArrowBack />,
   arrowDown: <MdOutlineKeyboardArrowDown />,
+  sun: <IoSunnyOutline />,
+  moon: <IoMoonOutline />,
 };
 
 export const sidebarMenuLinks = [

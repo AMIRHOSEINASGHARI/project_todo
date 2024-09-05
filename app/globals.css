@@ -55,7 +55,7 @@
 }
 
 .mobile-nav {
-  @apply sidebarScroll fixed top-0 z-20 flex w-full items-center justify-between gap-2 overflow-auto border-b bg-white px-4 py-2 sm:hidden;
+  @apply sidebarScroll dark:bg-dark2 border-border-light dark:border-border-dark fixed top-0 z-20 flex w-full items-center justify-between gap-2 overflow-auto border-b bg-white px-4 py-2 sm:hidden;
 }
 
 .btn_icon {
@@ -104,4 +104,16 @@
 
 .Grid2 {
   @apply grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-4;
+}
+
+.tableContainer {
+  @apply rounded-card shadow-card dark:shadow-dark dark:bg-dark2 overflow-hidden bg-white;
+}
+
+.table_sub_text {
+  @apply text-xs font-light text-slate-500;
+}
+
+.todo_completed {
+  @apply text-completed-light dark:text-completed-dark line-through;
 }

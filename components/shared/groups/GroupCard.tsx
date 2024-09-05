@@ -1,5 +1,4 @@
 import { icons } from "@/constants";
-import { group } from "console";
 import Link from "next/link";
 import moment from "moment";
 
@@ -12,14 +11,17 @@ type GroupCardProps = {
 
 const GroupCard = ({ _id, group_name, todos, createdAt }: GroupCardProps) => {
   return (
-    <Link href={`/groups/${_id}`} className="card space-y-3">
+    <Link
+      href={`/groups/${_id}`}
+      className="card dark:bg-dark2 dark:hover:bg-dark3 space-y-3"
+    >
       <p className="text-p1 font-semibold">{group_name}</p>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="icon_size">{icons.clock}</div>
           <p className="text-p2">{moment(createdAt).format("LLL")}</p>
         </div>
-        <p className="text-p1 bg-slate-100 rounded-md py-1 px-2">
+        <p className="bg-light1 dark:bg-dark3 rounded-md px-2 py-1 text-p1">
           {todos || 0} Tasks
         </p>
       </div>

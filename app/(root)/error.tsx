@@ -21,20 +21,20 @@ export default function Error({
   }, [error]);
 
   return (
-    <section className="h-[40vh] w-full flex flex-col justify-center items-center">
+    <section className="flex h-[40vh] w-full flex-col items-center justify-center">
       <Image
         src={images.error}
         width={150}
         height={150}
         alt="error!"
-        className="w-[50px] mb-5"
+        className="mb-5 w-[50px]"
       />
 
-      <h1 className="font-black text-5xl mb-4">Oops!</h1>
-      <p className="text-p1 mb-2">
+      <h1 className="mb-4 text-5xl font-black">Oops!</h1>
+      <p className="mb-2 text-p1">
         Cannot fetch data at this time! The above error has occured:
       </p>
-      <p className="bg-lightRose text-darkRose rounded-lg px-2 py-1 font-bold mb-6">
+      <p className="bg-lightRose text-darkRose mb-6 rounded-lg px-2 py-1 font-bold">
         {error.message}
       </p>
       <Button onClick={() => reset()}>Try again</Button>

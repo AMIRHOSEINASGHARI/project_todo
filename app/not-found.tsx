@@ -20,7 +20,7 @@ const NotFound = () => {
             height={300}
             alt="Not Found!"
           />
-          <p className="mt-5 mb-2 text-darkRose text-p1">Route Not Found!</p>
+          <p className="text-darkRose mb-2 mt-5 text-p1">Route Not Found!</p>
           {/* <BackLink
             title="Back to Home"
             icon={<Home size={15} />}

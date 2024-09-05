@@ -38,7 +38,7 @@ const TodosList = ({ title, todos }: TodosListProps) => {
       {title && (
         <Button
           variant="ghost"
-          className="w-fit rounded-md bg-slate-100 px-3 py-1"
+          className="dark:bg-dark3 w-fit rounded-md bg-slate-100 px-3 py-2"
           onClick={() => setShow(!show)}
         >
           <div
@@ -52,7 +52,7 @@ const TodosList = ({ title, todos }: TodosListProps) => {
         </Button>
       )}
       {show && (
-        <div className="space-y-2 rounded-md bg-slate-100 p-2">
+        <div className="dark:bg-dark3 space-y-2 rounded-md bg-slate-100 p-2">
           {todos?.map((todo) => (
             <TodoCard
               key={todo._id}

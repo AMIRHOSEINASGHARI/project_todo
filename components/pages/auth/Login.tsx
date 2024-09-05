@@ -48,7 +48,7 @@ const formSchema = z.object({
 const Login = () => {
   const { replace } = useRouter();
   const [passwordType, setPasswordType] = useState<"password" | "text">(
-    "password"
+    "password",
   );
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -74,26 +74,17 @@ const Login = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex items-center gap-[150px] bg-white p-[30px]"
+        className="dark:bg-dark1 flex h-screen w-full items-center justify-center gap-[150px] bg-white p-[30px]"
       >
-        <div className="max-xl:hidden bg-gray-100 rounded-3xl h-screen w-1/2 flex items-center justify-center">
-          <Image
-            src={images.authLogin}
-            priority
-            width={450}
-            height={450}
-            alt="auth-login"
-          />
-        </div>
-        <div className="max-xl:flex max-xl:justify-center max-xl:mt-16 max-xl:w-full">
+        <div className="max-xl:mt-16 max-xl:flex max-xl:w-full max-xl:justify-center">
           <div className="sm:w-[400px]">
             <div className="mb-[20px]">
-              <h1 className="h1 text-gray-600  mb-[10px]">Welcome back! 👋🏻</h1>
-              <p className="text-gray-500 tracking-tight">
+              <h1 className="h1 mb-[10px] text-teal-500">Login</h1>
+              <p className="tracking-tight text-gray-500">
                 Please sign-in to your account and start the adventure
               </p>
             </div>
-            <div className="space-y-5 mb-5">
+            <div className="mb-5 space-y-5">
               <FormField
                 control={form.control}
                 name="username"
@@ -130,11 +121,11 @@ const Login = () => {
                         type="button"
                         onClick={() =>
                           setPasswordType(
-                            passwordType === "password" ? "text" : "password"
+                            passwordType === "password" ? "text" : "password",
                           )
                         }
                         variant={btn_icon_variant}
-                        className="btn_icon absolute top-1 right-1 bottom-1"
+                        className="btn_icon absolute bottom-1 right-1 top-1"
                       >
                         {passwordType === "text"
                           ? icons.eye_open
@@ -155,7 +146,7 @@ const Login = () => {
                 {loading ? <Loader text="Sending data..." /> : "Submit"}
               </Button>
             </div>
-            <div className="flex items-center gap-2 justify-center">
+            <div className="flex items-center justify-center gap-2">
               <p className="text-p1">Dont have an account?</p>
               <Button asChild variant="link">
                 <Link href="/register">Sign Up</Link>

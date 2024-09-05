@@ -56,7 +56,7 @@ const TodoDetailsForm = ({ todo }: { todo: Todo }) => {
         <BackButton _id={todo?._id} />
         <DeleteTodoAction _id={todo?._id} pushRoute="/all" />
       </div>
-      <div className="space-y-2 rounded-md bg-white p-2 shadow">
+      <div className="dark:bg-dark2 space-y-2 rounded-md bg-white p-2 shadow">
         <div className="flex items-center justify-between gap-2">
           <CompleteTodoAction
             completed={JSON.parse(JSON.stringify(todo?.completed))}
@@ -87,7 +87,7 @@ const TodoDetailsForm = ({ todo }: { todo: Todo }) => {
       </div>
       <AddNote form={form} setForm={setForm} />
       <AddMarks form={form} setForm={setForm} />
-      <div className="space-y-2 rounded-md bg-white p-4 shadow">
+      <div className="dark:bg-dark2 space-y-2 rounded-md bg-white p-4 shadow">
         <span className="text-sm">More details</span>
         <ul className="ml-10 list-disc">
           <li>
@@ -178,7 +178,7 @@ const AddSteps = ({
     };
 
     return (
-      <div className="m-5 mb-2 rounded-lg border bg-white p-2">
+      <div className="dark:bg-dark3 border-border-light dark:border-border-dark m-5 mb-2 rounded-lg border bg-white p-2">
         {form?.steps?.map((step, index) => (
           <Fragment key={-step?._id! || index}>
             <div className="flex items-center justify-between">
@@ -260,6 +260,7 @@ const AddNote = ({
         });
       }}
       placeholder="Add note"
+      className="dark:bg-dark2"
     />
   );
 };
@@ -272,7 +273,7 @@ const AddMarks = ({
   setForm: Dispatch<SetStateAction<TodoDetailsFormStateProps>>;
 }) => {
   return (
-    <div className="flex flex-col gap-2 space-y-2 rounded-md bg-white p-4 shadow">
+    <div className="dark:bg-dark2 flex flex-col gap-2 space-y-2 rounded-md bg-white p-4 shadow">
       <span className="text-sm text-blue-500">
         {form?.marks?.length !== 0 ? "Marks" : "Add marks"}
       </span>

@@ -36,7 +36,7 @@ const TodoCard = ({
   group_id,
 }: TodoCardProps) => {
   return (
-    <div className="rounded-md bg-white p-2 shadow">
+    <div className="dark:bg-dark2 rounded-md bg-white p-2 shadow">
       <div
         className={clsx("flex items-center justify-between", {
           "mb-2":
@@ -50,7 +50,7 @@ const TodoCard = ({
           />
           <Link
             className={clsx("text-p1", {
-              "line-through": completed,
+              todo_completed: completed,
             })}
             href={`/todos/${_id}`}
           >

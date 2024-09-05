@@ -19,25 +19,29 @@ const Information = ({
   const headerTitls = ["Name", "Username", "Created At", "Last Modified"];
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          {headerTitls.map((i) => (
-            <TableHead key={i}>{i}</TableHead>
-          ))}
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>{name}</TableCell>
-          <TableCell>{username}</TableCell>
-          <TableCell>{new Date(createdAt!).toLocaleDateString()}</TableCell>
-          <TableCell>
-            {updatedAt ? new Date(updatedAt!).toLocaleDateString() : "-"}
-          </TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <div className="tableContainer">
+      <Table>
+        <TableHeader>
+          <TableRow className="hover:bg-transparent dark:hover:bg-transparent">
+            {headerTitls.map((i) => (
+              <TableHead key={i}>{i}</TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow className="hover:bg-transparent dark:hover:bg-transparent">
+            <TableCell className="py-2">{name}</TableCell>
+            <TableCell className="py-2">{username}</TableCell>
+            <TableCell className="py-2">
+              {new Date(createdAt!).toLocaleDateString()}
+            </TableCell>
+            <TableCell className="py-2">
+              {updatedAt ? new Date(updatedAt!).toLocaleDateString() : "-"}
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

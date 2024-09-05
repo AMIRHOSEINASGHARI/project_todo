@@ -26,12 +26,12 @@ const SidebarLink = ({
       asChild
       key={link}
       variant="ghost"
-      className="justify-start max-sm:h-fit max-sm:w-fit max-sm:rounded-xl max-sm:p-2 max-sm:hover:bg-slate-900 max-sm:hover:text-white"
+      className="dark:bg-dark2 justify-start bg-white max-sm:h-fit max-sm:w-fit max-sm:rounded-xl max-sm:p-2 max-sm:hover:bg-slate-900 max-sm:hover:text-white"
     >
       <Link
         href={link}
         className={clsx("relative flex w-full items-center justify-between", {
-          "bg-slate-900 text-white sm:bg-slate-100 sm:text-blue-600":
+          "sm:dark:bg-dark3 bg-slate-900 text-white dark:bg-slate-300 dark:text-black sm:bg-slate-100 sm:text-blue-600 sm:dark:text-blue-400":
             pathname === link,
         })}
       >

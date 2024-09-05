@@ -19,7 +19,7 @@ const Loader = ({
         visible={true}
         height={height || 20}
         width={width || 20}
-        color={color || "#000"}
+        // color={color || "#000"}
         ariaLabel="tail-spin-loading"
         radius="1"
       />

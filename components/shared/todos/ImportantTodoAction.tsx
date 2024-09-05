@@ -36,7 +36,7 @@ const ImportantTodoAction = ({
     <Button
       variant="icon"
       className={clsx({
-        "text-blue-500": important,
+        "text-blue-500 dark:text-blue-500": important,
       })}
       onClick={importantHandler}
       disabled={loading}
