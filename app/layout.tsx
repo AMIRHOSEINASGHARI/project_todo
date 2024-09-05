@@ -11,7 +11,6 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 // cmp
 import { Toaster } from "react-hot-toast";
-import MobileDarkMode from "@/components/shared/MobileDarkMode";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -41,7 +40,6 @@ export default function RootLayout({
             )}
           >
             {children}
-            <MobileDarkMode />
             <Toaster
               toastOptions={{
                 className: "dark:bg-dark3 dark:text-light2",

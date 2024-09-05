@@ -32,7 +32,7 @@ const PagesLayout = async ({ children }: { children: React.ReactNode }) => {
         <div className="pages_spaces">
           <div>{children}</div>
         </div>
-        {/* <MobileDarkMode /> */}
+        <MobileDarkMode />
       </div>
     );
   } else {
