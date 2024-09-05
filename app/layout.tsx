@@ -2,15 +2,15 @@
 import "./globals.css";
 // next
 import type { Metadata } from "next";
+// providers
+import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+import ThemeProvider from "@/providers/ThemeProvider";
 // fonts
 import { Inter as FontSans } from "next/font/google";
 // lib
 import { cn } from "@/lib/utils";
-// shadcn ui
-import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+// cmp
 import { Toaster } from "react-hot-toast";
-import ThemeProvider from "@/providers/ThemeProvider";
-import MobileDarkMode from "@/components/shared/MobileDarkMode";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -40,7 +40,6 @@ export default function RootLayout({
             )}
           >
             {children}
-            <MobileDarkMode />
             <Toaster
               toastOptions={{
                 className: "dark:bg-dark3 dark:text-light2",
