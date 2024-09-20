@@ -10,6 +10,10 @@ import SignoutButton from "@/components/shared/SignoutButton";
 const SettingsPage = async () => {
   const data = await getUser();
 
+  if (data?.data === null) {
+    return "no data";
+  }
+
   const all_todos = data?.data?.all_todos;
   const completed_todos = data?.data?.completed_todos;
   const uncompleted_todos = data?.data?.uncompleted_todos;

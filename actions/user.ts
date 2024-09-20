@@ -37,9 +37,14 @@ export const getUser = async () => {
       .select("-password")
       .lean<UserType>();
 
-    // if (!user) {
-    //   throw new Error("User not found");
-    // }
+    if (!user) {
+      return {
+        data: null,
+        message: "Success",
+        status: "success",
+        code: 200,
+      };
+    }
 
     const info = {
       username: user?.username,
@@ -49,13 +54,13 @@ export const getUser = async () => {
     };
     const all_todos = user?.todos;
     const completed_todos = user?.todos?.filter(
-      (todo) => todo?.completed === true,
+      (todo) => todo?.completed === true
     );
     const uncompleted_todos = user?.todos?.filter(
-      (todo) => todo?.completed === false,
+      (todo) => todo?.completed === false
     );
     const important_todos = user?.todos?.filter(
-      (todo) => todo?.important === true,
+      (todo) => todo?.important === true
     );
     const groups = user?.groups;
 
@@ -67,7 +72,7 @@ export const getUser = async () => {
         uncompleted_todos,
         important_todos,
         groups,
-      }),
+      })
     );
 
     return {
