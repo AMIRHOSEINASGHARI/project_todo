@@ -62,6 +62,7 @@ const EditProfileForm = ({
 
     if (result?.code === 200) {
       toast.success(result?.message);
+      onClose();
     } else {
       toast.error(result?.message);
     }
