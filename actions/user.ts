@@ -1,7 +1,7 @@
 "use server";
 
 // types
-import { User as UserType } from "@/types/user";
+import { EditUserProps, User as UserType } from "@/types/user";
 // utils
 import { getServerSession } from "@/utils/session";
 import connectDB from "@/utils/connectDB";
@@ -84,5 +84,55 @@ export const getUser = async () => {
   } catch (error: any) {
     console.log(error);
     throw new Error(error);
+  }
+};
+
+export const editUser = async ({ username, name, avatar }: EditUserProps) => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    const user = await User.findById(session?.userId);
+
+    if (!user) {
+      return {
+        message: "Unauthorized!",
+        status: "failed",
+        code: 404,
+      };
+    }
+
+    if (
+      username.length < 4 &&
+      username.length > 10 &&
+      name.length < 8 &&
+      name.length > 15
+    ) {
+      return {
+        message: "Invalid data",
+        status: "failed",
+        code: 400,
+      };
+    }
+
+    await User.findByIdAndUpdate({
+      username,
+      name,
+      avatar,
+    });
+
+    return {
+      message: "Info updated!",
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Server Error!",
+      status: "failed",
+      code: 500,
+    };
   }
 };

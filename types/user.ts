@@ -9,6 +9,7 @@ export type User = Document & {
   username: string;
   password: string;
   name: string;
+  avatar: URL | null;
   todos: [Todo] | [];
   groups: [Group] | [];
   createdAt: Date;
@@ -28,4 +29,10 @@ export type TodosInformationProps = {
   uncompleted_todos: number | undefined;
   important_todos: number | undefined;
   groups: number | undefined;
+};
+
+export type EditUserProps = {
+  username: string;
+  name: string;
+  avatar: URL | undefined;
 };

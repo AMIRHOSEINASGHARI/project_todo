@@ -4,6 +4,15 @@ const userSchema = new Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
+  avatar: {
+    type: String,
+    validate: {
+      validator: function (v: any) {
+        return /^https?:\/\/.+\..+$/.test(v); // Simple URL validation regex
+      },
+      message: (props: any) => `${props.value} is not a valid URL!`,
+    },
+  },
   todos: [
     {
       type: Schema.Types.ObjectId,
