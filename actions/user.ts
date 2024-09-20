@@ -1,14 +1,20 @@
 "use server";
 
+// next
+import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 // types
 import { EditUserProps, User as UserType } from "@/types/user";
 // utils
+import { SECRET_KEY, SESSION_EXPIRATION } from "@/utils/vars";
 import { getServerSession } from "@/utils/session";
 import connectDB from "@/utils/connectDB";
 // models
 import Group from "@/utils/models/group";
 import Todo from "@/utils/models/todo";
 import User from "@/utils/models/user";
+// jwt
+import { sign } from "jsonwebtoken";
 
 export const getUser = async () => {
   try {
@@ -133,6 +139,31 @@ export const editUser = async ({ username, name, avatar }: EditUserProps) => {
     user.name = name;
     user.avatar = avatar;
     await user.save();
+
+    // creating token
+    const accessToken = sign(
+      {
+        userId: user._id,
+        username,
+        name: name,
+        avatar: avatar,
+      },
+      SECRET_KEY || "",
+      {
+        expiresIn: SESSION_EXPIRATION,
+      }
+    );
+
+    // setting token in cookie
+    cookies().set("accessToken", accessToken, {
+      httpOnly: true,
+      secure: true,
+      expires: new Date(Date.now() + SESSION_EXPIRATION),
+      sameSite: "lax",
+      path: "/",
+    });
+
+    revalidatePath("/", "layout");
 
     return {
       message: "Info updated!",
