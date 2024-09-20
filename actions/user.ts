@@ -116,11 +116,23 @@ export const editUser = async ({ username, name, avatar }: EditUserProps) => {
       };
     }
 
-    await User.findByIdAndUpdate({
-      username,
-      name,
-      avatar,
-    });
+    const existingUsername = await User.findOne({ username });
+    console.log(
+      existingUsername && existingUsername?.username !== user?.username
+    );
+
+    if (existingUsername && existingUsername?.username !== user?.username) {
+      return {
+        message: "Username already exist!",
+        status: "failed",
+        code: 400,
+      };
+    }
+
+    user.username = username;
+    user.name = name;
+    user.avatar = avatar;
+    await user.save();
 
     return {
       message: "Info updated!",

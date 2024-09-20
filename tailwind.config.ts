@@ -85,6 +85,10 @@ const config = {
         dark3: "#202831",
         "error-light": "#e11d48",
         "error-dark": "#f43f5e",
+        disabled: {
+          dark: "#1e293b",
+          light: "#cbd5e1",
+        },
         completed: {
           light: "#94a3b8",
           dark: "#64748b",

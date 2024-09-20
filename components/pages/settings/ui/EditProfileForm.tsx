@@ -28,6 +28,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import FileUploader from "./FileUploader";
+import useServerAction from "@/hooks/callServerAction";
+import { editUser } from "@/actions/user";
+import toast from "react-hot-toast";
+import Loader from "@/components/shared/Loader";
+import clsx from "clsx";
 
 type EditProfileFormProps = {
   open: boolean;
@@ -49,9 +54,17 @@ const EditProfileForm = ({
       avatar: undefined,
     },
   });
+  const { loading, fn } = useServerAction(editUser);
 
-  const onSubmit = (values: z.infer<typeof editProfileFormSchema>) => {
+  const onSubmit = async (values: z.infer<typeof editProfileFormSchema>) => {
     console.log(values);
+    const result = await fn(values);
+
+    if (result?.code === 200) {
+      toast.success(result?.message);
+    } else {
+      toast.error(result?.message);
+    }
   };
 
   return (
@@ -112,10 +125,21 @@ const EditProfileForm = ({
               )}
             />
             <DialogFooter>
-              <Button type="button" variant="outline" onClick={onClose}>
+              <Button
+                type="button"
+                variant="outline"
+                disabled={loading}
+                onClick={onClose}
+              >
                 Cancel
               </Button>
-              <Button type="submit">Save changes</Button>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="min-w-[100px]"
+              >
+                {loading ? <Loader /> : "Save changes"}
+              </Button>
             </DialogFooter>
           </form>
         </Form>

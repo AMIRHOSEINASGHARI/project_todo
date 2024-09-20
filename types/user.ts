@@ -9,7 +9,7 @@ export type User = Document & {
   username: string;
   password: string;
   name: string;
-  avatar: URL | null;
+  avatar: URL | undefined;
   todos: [Todo] | [];
   groups: [Group] | [];
   createdAt: Date;
