@@ -99,6 +99,7 @@ export const login = async ({
         username,
         userId: user._id,
         name: user.name,
+        avatar: user.avatar,
       },
       SECRET_KEY || "",
       {
