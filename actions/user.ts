@@ -138,6 +138,7 @@ export const editUser = async ({ username, name, avatar }: EditUserProps) => {
     user.username = username;
     user.name = name;
     user.avatar = avatar;
+    user.updatedAt = Date.now();
     await user.save();
 
     // creating token

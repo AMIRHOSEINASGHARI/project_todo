@@ -26,8 +26,8 @@ import Loader from "@/components/shared/Loader";
 import toast from "react-hot-toast";
 
 type FileUploaderProps = {
-  avatar: string;
-  setAvatar: Dispatch<SetStateAction<string>>;
+  avatar: string | undefined;
+  setAvatar: Dispatch<SetStateAction<string | undefined>>;
   onFieldChange: (value: string) => void;
 };
 
