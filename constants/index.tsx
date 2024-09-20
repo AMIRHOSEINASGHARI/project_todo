@@ -10,6 +10,7 @@ import {
   PiClockLight,
   PiBoundingBoxLight,
   PiUserLight,
+  PiImage,
 } from "react-icons/pi";
 import { LuListTodo } from "react-icons/lu";
 import {
@@ -73,6 +74,7 @@ export const icons = {
   arrowDown: <MdOutlineKeyboardArrowDown />,
   sun: <IoSunnyOutline />,
   moon: <IoMoonOutline />,
+  image: <PiImage />,
 };
 
 export const sidebarMenuLinks = [
