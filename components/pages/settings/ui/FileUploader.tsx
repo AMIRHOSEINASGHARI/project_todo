@@ -70,42 +70,49 @@ const FileUploader = ({
     if (file?.length !== 0) startUpload(file);
   }, [file]);
 
+  console.log(avatar);
+
   return (
-    <div>
-      <div {...getRootProps()}>
-        <Input {...getInputProps()} multiple={false} disabled={isUploading} />
-        <div className="flex justify-center cursor-pointer">
-          <div className="relative w-[150px] h-[150px] rounded-full border flex items-center justify-center border-border-light dark:border-border-dark text-icon-light dark:text-icon-dark">
-            {file?.length !== 0 || avatar?.length !== 0 ? (
+    <div {...getRootProps()}>
+      <Input {...getInputProps()} multiple={false} disabled={isUploading} />
+      <div className="flex justify-center cursor-pointer">
+        <div className="relative w-[150px] h-[150px] border rounded-full border-border-light dark:border-border-dark text-icon-light dark:text-icon-dark">
+          <div className="rounded-full overflow-hidden w-full h-full flex items-center justify-center">
+            {file?.length !== 0 &&
               file.map((file) => (
-                <div
+                <Image
                   key={file.name}
-                  className="w-full h-full rounded-full overflow-hidden"
-                >
-                  <Image
-                    src={URL.createObjectURL(file)}
-                    width={100}
-                    height={100}
-                    alt={file.name}
-                    priority
-                    onLoad={() =>
-                      URL.revokeObjectURL(URL.createObjectURL(file))
-                    }
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))
-            ) : (
+                  src={URL.createObjectURL(file)}
+                  width={100}
+                  height={100}
+                  alt={file.name}
+                  priority
+                  onLoad={() => URL.revokeObjectURL(URL.createObjectURL(file))}
+                  className="w-full h-full object-cover"
+                />
+              ))}
+            {file?.length === 0 && avatar && (
+              <Image
+                src={avatar}
+                width={100}
+                height={100}
+                alt="avatar"
+                priority
+                className="w-full h-full object-cover rounded-full"
+              />
+            )}
+            {file?.length === 0 && !avatar && (
               <div className="text-4xl">{icons.image}</div>
             )}
-            <div className="absolute bottom-2 right-2 text-xl w-[30px] h-[30px] rounded-full bg-white dark:bg-dark3 border border-border-light dark:border-border-dark flex items-center justify-center z-[50]">
-              {icons.pen}
-            </div>
             {isUploading && (
               <div className="absolute inset-0 bg-white/80 dark:bg-black/80 w-full h-full flex justify-center items-center rounded-full">
                 <Loader />
               </div>
             )}
+          </div>
+
+          <div className="absolute bottom-2 right-2 text-xl w-[30px] h-[30px] rounded-full bg-white dark:bg-dark3 border border-border-light dark:border-border-dark flex items-center justify-center z-[50]">
+            {icons.pen}
           </div>
         </div>
       </div>
