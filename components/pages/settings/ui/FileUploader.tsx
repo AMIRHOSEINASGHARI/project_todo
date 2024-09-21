@@ -68,9 +68,7 @@ const FileUploader = ({
 
   useEffect(() => {
     if (file?.length !== 0) startUpload(file);
-  }, [file]);
-
-  console.log(avatar);
+  }, [file, startUpload]);
 
   return (
     <div {...getRootProps()}>
