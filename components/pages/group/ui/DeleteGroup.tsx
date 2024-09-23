@@ -31,7 +31,7 @@ const DeleteGroup = ({ _id }: { _id: string }) => {
   };
 
   return (
-    <div className="mb-4 flex justify-end">
+    <div>
       <CustomTooltip
         trigger={
           <Button variant="icon" onClick={deletehandler}>
