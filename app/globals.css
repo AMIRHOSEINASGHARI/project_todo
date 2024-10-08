@@ -55,7 +55,7 @@
 }
 
 .mobile-nav {
-  @apply sidebarScroll dark:bg-dark2 border-border-light dark:border-border-dark fixed top-0 z-20 flex w-full items-center justify-between gap-2 overflow-auto border-b bg-white px-4 py-2 sm:hidden;
+  @apply sidebarScroll dark:bg-dark2/50 bg-white/50 backdrop-blur-lg border-border-light dark:border-border-dark fixed top-0 z-20 flex w-full items-center justify-between gap-2 overflow-auto border-b px-4 py-2 sm:hidden;
 }
 
 .btn_icon {

@@ -9,7 +9,7 @@ import { getUser } from "@/actions/user";
 // cmp
 import Sidebar from "@/components/shared/layout/Sidebar";
 import MobileNav from "@/components/shared/layout/MobileNav";
-import MobileDarkMode from "@/components/shared/MobileDarkMode";
+// import MobileDarkMode from "@/components/shared/MobileDarkMode";
 
 const PagesLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = getServerSession();
@@ -32,7 +32,7 @@ const PagesLayout = async ({ children }: { children: React.ReactNode }) => {
         <div className="pages_spaces">
           <div>{children}</div>
         </div>
-        <MobileDarkMode />
+        {/* <MobileDarkMode /> */}
       </div>
     );
   } else {

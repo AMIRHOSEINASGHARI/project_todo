@@ -51,10 +51,10 @@ const SidebarAddNewGroup = () => {
   const dialogTrigger = (
     <Button
       variant="ghost"
-      className="flex w-fit items-center justify-start gap-4 text-blue-500 max-sm:p-2 sm:w-full"
+      className="flex w-full items-center justify-start gap-4 text-blue-500 max-sm:p-2"
     >
       <div className="icon_size">{icons.plus}</div>
-      <p className="max-sm:hidden">New Group</p>
+      <p>New Group</p>
     </Button>
   );
 
