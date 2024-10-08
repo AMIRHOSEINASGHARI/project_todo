@@ -18,7 +18,7 @@ type TodosListProps = {
 
 const TodosList = ({ title, todos }: TodosListProps) => {
   const [show, setShow] = useState(
-    JSON.parse(localStorage.getItem(title!)!) ?? true,
+    JSON.parse(localStorage.getItem(title!)!) ?? true
   );
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const TodosList = ({ title, todos }: TodosListProps) => {
     if (todos?.length === 0 && title) {
       localStorage.removeItem(title);
     }
-  }, [show, todos]);
+  }, [show, todos, title]);
 
   if (todos?.length === 0) return null;
 

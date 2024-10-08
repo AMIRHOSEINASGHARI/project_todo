@@ -19,6 +19,7 @@ const ImportantTodoAction = ({
 }: {
   _id: string;
   important: boolean;
+  text?: string;
 }) => {
   const { loading, fn } = useServerAction(importantTodo);
 

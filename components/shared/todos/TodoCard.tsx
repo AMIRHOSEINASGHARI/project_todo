@@ -11,6 +11,7 @@ import ImportantTodoAction from "./ImportantTodoAction";
 import clsx from "clsx";
 import TodoMarkBadge from "../TodoMarkBadge";
 import CustomTooltip from "../CustomTooltip";
+import TodoActionsMenu from "./TodoActionsMenu";
 
 type TodoCardProps = {
   _id: string;
@@ -36,7 +37,15 @@ const TodoCard = ({
   group_id,
 }: TodoCardProps) => {
   return (
-    <div className="dark:bg-dark2 rounded-md bg-white p-2 shadow">
+    <div
+      className={clsx(
+        "dark:bg-dark2 rounded-md bg-white p-2 shadow border-l-4",
+        {
+          "border-transparent": !important,
+          "border-blue-500": important,
+        }
+      )}
+    >
       <div
         className={clsx("flex items-center justify-between", {
           "mb-2":
@@ -49,7 +58,7 @@ const TodoCard = ({
             _id={JSON.parse(JSON.stringify(_id))}
           />
           <Link
-            className={clsx("text-p1", {
+            className={clsx("text-p1 line-clamp-2", {
               todo_completed: completed,
             })}
             href={`/todos/${_id}`}
@@ -57,10 +66,7 @@ const TodoCard = ({
             {title}
           </Link>
         </div>
-        <ImportantTodoAction
-          important={JSON.parse(JSON.stringify(important))}
-          _id={JSON.parse(JSON.stringify(_id))}
-        />
+        <TodoActionsMenu id={_id} important={important} />
       </div>
       <div className="ml-[46px] mr-2 flex flex-wrap items-center gap-3 text-slate-400 md:gap-4">
         {group_name && (
