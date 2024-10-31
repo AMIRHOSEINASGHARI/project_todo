@@ -52,7 +52,7 @@ const TodosList = ({ title, todos }: TodosListProps) => {
         </Button>
       )}
       {show && (
-        <div className="dark:bg-dark3 space-y-2 rounded-md bg-slate-100 p-2">
+        <div className="dark:bg-dark3 grid grid-cols-1 lg:grid-cols-2 gap-2 rounded-md bg-slate-100 p-2">
           {todos?.map((todo) => (
             <TodoCard
               key={todo._id}
