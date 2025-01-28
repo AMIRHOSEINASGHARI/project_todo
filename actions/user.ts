@@ -28,7 +28,7 @@ export const getUser = async () => {
         model: Todo,
         select: "-user",
         options: {
-          sort: { completed: 1, important: -1 },
+          sort: { completed: 1, important: -1, createdAt: 1 },
         },
         populate: {
           path: "group",

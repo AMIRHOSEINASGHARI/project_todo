@@ -48,7 +48,7 @@ const formSchema = z.object({
 const Login = () => {
   const { replace } = useRouter();
   const [passwordType, setPasswordType] = useState<"password" | "text">(
-    "password",
+    "password"
   );
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -121,7 +121,7 @@ const Login = () => {
                         type="button"
                         onClick={() =>
                           setPasswordType(
-                            passwordType === "password" ? "text" : "password",
+                            passwordType === "password" ? "text" : "password"
                           )
                         }
                         variant={btn_icon_variant}
@@ -139,9 +139,7 @@ const Login = () => {
               <Button
                 type="submit"
                 disabled={loading}
-                className={clsx("w-full", {
-                  "bg-gray-100": loading,
-                })}
+                className="w-full rounded-full"
               >
                 {loading ? <Loader text="Sending data..." /> : "Submit"}
               </Button>

@@ -44,7 +44,7 @@ export const createNewGroup = async ({
           message: "Group created",
           status: "success",
           code: 200,
-        }),
+        })
       );
     } else {
       return {
@@ -140,7 +140,7 @@ export const deleteGroup = async ({ _id }: { _id: string }) => {
 
     await User.findOneAndUpdate(
       { _id: session?.userId },
-      { $pull: { groups: _id } },
+      { $pull: { groups: _id } }
     );
     await Todo.deleteMany({ group: _id });
     await Group.findByIdAndDelete(_id);
@@ -200,9 +200,8 @@ export const getGroup = async (id: string) => {
       .populate({
         path: "todos",
         model: Todo,
-        // match: { completed: { $ne: true } },
         options: {
-          sort: { important: -1, completed: 1 },
+          sort: { completed: 1, important: -1, createdAt: 1 },
         },
       })
       .lean<GroupType>();

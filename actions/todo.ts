@@ -245,6 +245,7 @@ export const getTodos = async () => {
     })
       .sort({
         important: -1,
+        createdAt: 1,
       })
       .lean<TodoType[]>();
 
@@ -257,7 +258,7 @@ export const getTodos = async () => {
         model: Todo,
         match: { completed: { $ne: true } },
         options: {
-          sort: { important: -1 },
+          sort: { important: -1, createdAt: 1 },
         },
         populate: {
           path: "group",
@@ -326,10 +327,10 @@ export const getSidebarTodos = async () => {
     }).lean<TodoType[]>();
 
     const un_completed_todos = todos?.filter(
-      (todo) => todo?.completed === false,
+      (todo) => todo?.completed === false
     )?.length;
     const important_todos = todos?.filter(
-      (todo) => todo?.important === true && todo?.completed === false,
+      (todo) => todo?.important === true && todo?.completed === false
     )?.length;
 
     return {

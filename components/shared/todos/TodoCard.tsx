@@ -6,7 +6,6 @@ import { TodoMarks, TodoSteps } from "@/types/todo";
 import { icons } from "@/constants";
 // cmp
 import CompleteTodoAction from "./CompleteTodoAction";
-import ImportantTodoAction from "./ImportantTodoAction";
 // clsx
 import clsx from "clsx";
 import TodoMarkBadge from "../TodoMarkBadge";

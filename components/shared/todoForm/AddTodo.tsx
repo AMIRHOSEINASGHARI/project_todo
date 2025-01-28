@@ -28,6 +28,7 @@ const AddTodo = ({ important, isGrouped, group }: AddTodoProps) => {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (title.trim().length === 0) return;
 
     const result = await fn({ title, important, isGrouped, group });
 
@@ -50,7 +51,7 @@ const AddTodo = ({ important, isGrouped, group }: AddTodoProps) => {
           value={title}
           placeholder="Add a Task"
           onChange={(e) => setTodo(e.target.value)}
-          className="border-slate-400"
+          disabled={loading}
         />
       </form>
     </div>
